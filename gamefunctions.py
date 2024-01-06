@@ -1,9 +1,13 @@
 import pygame
 import sys
+from ebee import Ebee
 
-def update_screen(screen):
+def update_screen(screen, ebee):
        pygame.display.flip()
+       ebee.blitme()
+
        
+
 def check_events():
     #Respond to keypresses and mouse events.
     for event in pygame.event.get():

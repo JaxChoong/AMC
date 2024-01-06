@@ -1,0 +1,27 @@
+import pygame
+
+# Class that manages behaviours of the ebee.
+class Ebee():
+    def __init__(self,screen):
+        self.screen = screen
+        
+        #Load the ship and get its rect.
+        self.image = pygame.image.load('images\ebee.png')
+        self.image = pygame.transform.scale(self.image, (60, 100))
+        self.rect = self.image.get_rect()
+        self.screen_rect = screen.get_rect()
+
+        #Start ebee at the bottom of the screen.
+        self.rect.centerx = self.screen_rect.centerx
+        self.rect.bottom = self.screen_rect.bottom
+
+        # Store a decimal value for ebee center
+        self.center = float(self.rect.centerx)
+
+    def blitme(self):
+        # Draw ebee at its current location
+        self.screen.blit(self.image, self.rect)
+
+    def center_ship(self):
+        # Center ebee on the screen.
+        self.center = self.screen_rect.centerx
