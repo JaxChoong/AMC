@@ -11,6 +11,7 @@
 import pygame
 import gamefunctions as gf
 from ebee import Ebee
+from cars import Cars
 from settings import Settings
 
 #Setup pygame (Jax)
@@ -22,8 +23,9 @@ pygame.display.set_caption("Average MMU Commute")
 clock = pygame.time.Clock()
 running = True      #Running state of the game.
 ebee = Ebee(screen)
+cars = Cars(screen,40,1)
 
 while running:
-    gf.update_screen(screen , ebee)
+    gf.update_screen(screen , ebee, cars)
     gf.check_events()
 

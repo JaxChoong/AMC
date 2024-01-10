@@ -1,10 +1,12 @@
 import pygame
 import sys
 from ebee import Ebee
+from cars import Cars
 
-def update_screen(screen, ebee):
+def update_screen(screen, ebee,cars):
        pygame.display.flip()
        ebee.blitme()
+       cars.blitme()
 
        
 def check_events():

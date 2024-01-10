@@ -28,5 +28,4 @@ class Ebee():
     
     #Movement for (Ebee)
     def Ebee_movement(self):
-        
-
+        x=1
