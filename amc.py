@@ -26,4 +26,6 @@ ebee = Ebee(screen)
 while running:
     gf.update_screen(screen , ebee)
     gf.check_events()
+    
+    
 
