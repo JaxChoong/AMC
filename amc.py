@@ -13,7 +13,7 @@ import gamefunctions as gf
 from ebee import Ebee
 from settings import Settings
 
-#Setup pygame
+#Setup pygame (Jax)
 
 game_settings = Settings()
 pygame.init()
