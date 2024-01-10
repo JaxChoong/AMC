@@ -1,6 +1,16 @@
-Rank Name High Score
-1 Name 00000
-2 Name 00000
-3 Name 00000
-4 Name 00000
-5 Name 00000
+Rank | Name | High Score
+1
+Name
+00000
+2
+Name
+00000
+3
+Name
+00000
+4
+Name
+00000
+5
+Name
+00000
