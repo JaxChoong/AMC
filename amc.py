@@ -28,4 +28,6 @@ cars = Cars(screen,40,1)
 while running:
     gf.update_screen(screen , ebee, cars)
     gf.check_events()
+    
+    
 
