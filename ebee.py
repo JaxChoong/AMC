@@ -25,3 +25,8 @@ class Ebee():
     def center_ship(self):
         # Center ebee on the screen.
         self.center = self.screen_rect.centerx
+    
+    #Movement for (Ebee)
+    def Ebee_movement(self):
+        
+

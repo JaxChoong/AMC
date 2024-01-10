@@ -1,5 +1,5 @@
 # *********************************************************
-# Program: YOUR_FILENAME.py
+# Program: amc.py
 # Course: PSP0101 PROBLEM SOLVING AND PROGRAM DESIGN
 # Class: TL13
 # Year: 2023/24 Trimester 1
@@ -26,3 +26,4 @@ ebee = Ebee(screen)
 while running:
     gf.update_screen(screen , ebee)
     gf.check_events()
+

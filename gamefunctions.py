@@ -7,7 +7,6 @@ def update_screen(screen, ebee):
        ebee.blitme()
 
        
-
 def check_events():
     #Respond to keypresses and mouse events.
     for event in pygame.event.get():
@@ -24,6 +23,4 @@ def check_events():
                 # elif event.type == pygame.MOUSEBUTTONDOWN:
                 #     mouse_x, mouse_y = pygame.mouse.get_pos()
                 #     check_play_button(ai_settings, screen, stats, sb,  play_button, ship, aliens, bullets, mouse_x, mouse_y)
-
-
 
