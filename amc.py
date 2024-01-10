@@ -9,6 +9,7 @@
 # Phones: 0168262342 | 0168711296 | MEMBER_PHONE_3
 # ********************************************************* 
 import pygame
+import random
 import gamefunctions as gf
 from ebee import Ebee
 from cars import Cars
@@ -18,16 +19,21 @@ from settings import Settings
 
 game_settings = Settings()
 pygame.init()
-screen = pygame.display.set_mode((game_settings.screen_height,game_settings.screen_width))    #Set the screen size
+screen = pygame.display.set_mode((game_settings.screen_width,game_settings.screen_height))    #Set the screen size
 pygame.display.set_caption("Average MMU Commute")
 clock = pygame.time.Clock()
 running = True      #Running state of the game.
 ebee = Ebee(screen)
-cars = Cars(screen,40,1)
+lane = random.randint(1,3)
+if lane == 1:
+    lane = 50
+elif lane == 2:
+    lane = 170
+elif lane == 3:
+    lane = 300
+cars = Cars(screen,lane,1)
 
 while running:
     gf.update_screen(screen , ebee, cars)
     gf.check_events()
-    
-    
-
+            
