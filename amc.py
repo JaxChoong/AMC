@@ -26,8 +26,10 @@ ebee = Ebee(screen)
 lane = gf.randomizeLanes()
 cars = Cars(screen,lane,1)
 
+
 while running:
     gf.check_events()
     cars.update()
     gf.update_screen(screen , ebee, cars)
+
             

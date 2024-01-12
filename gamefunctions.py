@@ -19,8 +19,9 @@ def check_events():
                     # Checks if user quits the game
                     sys.exit()
                 
-                # elif event.type == pygame.KEYDOWN:
-                #     check_keydown_events(event,screen)
+               # elif event.type == pygame.KEYDOWN:
+               #     if(event.key==pygame.K_LEFT):
+                         
                 
                 # elif event.type == pygame.KEYUP:
                 #     check_keyup_events(event,ship)
