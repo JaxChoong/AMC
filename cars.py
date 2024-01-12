@@ -8,12 +8,11 @@ settings = Settings()
 
 class Cars(Sprite):
     
-
     # A class to manage cars.
-    def __init__(self, screen,lane, car_number):
+    def __init__(self, screen,lane):
         super(Cars,self).__init__()
         self.screen = screen
-        car_image = self.randomiseCars()
+        self.image = self.randomizeCars()
         self.rect = self.image.get_rect()
         self.rect = self.image.get_rect()
         self.rect.centerx = lane
@@ -41,7 +40,7 @@ class Cars(Sprite):
         else:
             return False
         
-    def randomiseCars(self):
+    def randomizeCars(self):
         # Function to randomise cars' icons.
         car_number = random.randint(1,3)
         if car_number == 1:
@@ -57,7 +56,7 @@ class Cars(Sprite):
 
     def resetCars(self):
         self.lane = gf.randomizeLanes()
-        self.car_image = self.randomiseCars()
+        self.car_image = self.randomizeCars()
         self.rect.centery = 0
         self.rect.centerx = self.lane
         self.y = 0

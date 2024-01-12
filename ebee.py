@@ -1,11 +1,12 @@
 import pygame
+from pygame.sprite import Sprite
 
 #Initialize ebee position
 #ebeeX =
 #ebeeY =
 
 # Class that manages behaviours of the ebee.
-class Ebee():
+class Ebee(Sprite):
     def __init__(self,screen):
         self.screen = screen
         

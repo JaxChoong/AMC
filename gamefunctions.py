@@ -2,6 +2,7 @@ import pygame
 import sys
 import random
 from settings import Settings
+from time import sleep
 
 settings = Settings()
 
@@ -42,6 +43,9 @@ def randomizeLanes():
         lane = 300
     return lane
 
-
+def check_ebee_cars_collisions(ebee,cars):
+    collisions = pygame.sprite.collide_rect(ebee,cars)   #Check if the rects of the cars and ebee collided.
+    if collisions:
+        sleep(0.5)    #Turns of screen for half a second
 
 
