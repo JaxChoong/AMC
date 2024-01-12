@@ -24,7 +24,7 @@ clock = pygame.time.Clock()
 running = True      #Running state of the game.
 ebee = Ebee(screen)
 lane = gf.randomizeLanes()
-cars = Cars(screen,lane,1)
+cars = Cars(screen,lane)
 
 while running:
     gf.check_events()

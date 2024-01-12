@@ -10,10 +10,10 @@ class Cars(Sprite):
     
 
     # A class to manage cars.
-    def __init__(self, screen,lane, car_number):
+    def __init__(self, screen,lane):
         super(Cars,self).__init__()
         self.screen = screen
-        car_image = self.randomiseCars()
+        self.image = self.randomiseCars()
         self.rect = self.image.get_rect()
         self.rect = self.image.get_rect()
         self.rect.centerx = lane
