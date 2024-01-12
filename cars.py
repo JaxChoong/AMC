@@ -49,10 +49,10 @@ class Cars(Sprite):
             self.image = pygame.transform.scale(self.image, (90, 100))
         elif car_number == 2:
             self.image = pygame.image.load('images/car2.png')
-            self.image = pygame.transform.scale(self.image, (150, 100))
+            self.image = pygame.transform.scale(self.image, (90, 100))
         elif car_number == 3:
             self.image = pygame.image.load('images/car3.png')
-            self.image = pygame.transform.scale(self.image, (150, 100))
+            self.image = pygame.transform.scale(self.image, (90, 100))
         return self.image
 
     def resetCars(self):
