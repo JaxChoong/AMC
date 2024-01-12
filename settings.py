@@ -8,3 +8,6 @@ class Settings():
 
         # Settings for cars
         self.car_speed_factor = 0.3
+
+        # Settings for ebee
+        self.ebee_speed_factor = 0.3

@@ -4,6 +4,10 @@ import random
 from settings import Settings
 from time import sleep
 
+#ebeeX=
+#ebeeY=
+#ebeeXmove=0.5
+#ebeeYmove=0.5
 settings = Settings()
 
 def update_screen(screen, ebee,cars):
@@ -13,22 +17,34 @@ def update_screen(screen, ebee,cars):
        pygame.display.flip()
 
        
-def check_events():
+def check_events(ebee):
     #Respond to keypresses and mouse events.
     for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     # Checks if user quits the game
                     sys.exit()
-                
-               # elif event.type == pygame.KEYDOWN:
-               #     if(event.key==pygame.K_LEFT):
-                         
-                
-                # elif event.type == pygame.KEYUP:
-                #     check_keyup_events(event,ship)
 
-                # elif event.type == pygame.MOUSEBUTTONDOWN:
-                #     mouse_x, mouse_y = pygame.mouse.get_pos()
+                if event.type == pygame.KEYDOWN:
+                      if(event.key==pygame.K_LEFT):
+                           ebee.moving_left=True
+                      elif(event.key==pygame.K_RIGHT):
+                           ebee.moving_right=True
+
+                if event.type == pygame.KEYUP:
+                      if(event.key == pygame.K_LEFT or event.key==pygame.K_RIGHT):
+                           ebee.moving_left=False
+                           ebee.moving_right=False
+                           
+                #elif event.type == pygame.KEYDOWN:
+                    #if(event.key==pygame.K_LEFT):
+                         
+                         
+                    
+                #elif event.type == pygame.KEYUP:
+                    #if(check_keyup_events(event,ship))
+
+                #elif event.type == pygame.MOUSEBUTTONDOWN:
+                     #mouse_x, mouse_y = pygame.mouse.get_pos()
                 #     check_play_button(ai_settings, screen, stats, sb,  play_button, ship, aliens, bullets, mouse_x, mouse_y)
                     
 
@@ -46,6 +62,4 @@ def randomizeLanes():
 def check_ebee_cars_collisions(ebee,cars):
     collisions = pygame.sprite.collide_rect(ebee,cars)   #Check if the rects of the cars and ebee collided.
     if collisions:
-        sleep(0.5)    #Turns of screen for half a second
-
-
+        sleep(0.1)    #Turns of screen for SOMETIME
