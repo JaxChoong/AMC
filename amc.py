@@ -3,13 +3,12 @@
 # Course: PSP0101 PROBLEM SOLVING AND PROGRAM DESIGN
 # Class: TL13
 # Year: 2023/24 Trimester 1
-# Names: ERIC_CHIN_YAN_HONG | CHONG_MENG_HANG | MEMBER_NAME_3
-# IDs: 1221107092 | 1221105899 | MEMBER_ID_3
-# Emails: 1221107092@student.mmu.edu.my | 1221105899@student.mmu.edu.my | MEMBER_EMAIL_3
-# Phones: 0168262342 | 0168711296 | MEMBER_PHONE_3
+# Names: ERIC_CHIN_YAN_HONG | CHONG_MENG_HANG | CHOONG JIA XUEN
+# IDs: 1221107092 | 1221105899 | 1221106177
+# Emails: 1221107092@student.mmu.edu.my | 1221105899@student.mmu.edu.my | 1221106177@student.mmu.edu.my
+# Phones: 0168262342 | 0168711296 | 0136573888
 # ********************************************************* 
 import pygame
-import random
 import gamefunctions as gf
 from ebee import Ebee
 from cars import Cars
