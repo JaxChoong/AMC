@@ -31,10 +31,11 @@ class Ebee(Sprite):
         self.screen.blit(self.image, self.rect)
 
     def center_ship(self):
-    #    # Center ebee on the screen.
+        # Center ebee on the screen.
         self.center = self.screen_rect.centerx
 
     def movementUpdate(self):
+        #Ebee movement(left and right)
         self.rect.centerx=self.center
         if(self.moving_right==True and self.rect.right < 350):
             self.center+=settings.ebee_speed_factor

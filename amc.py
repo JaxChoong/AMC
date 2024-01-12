@@ -33,5 +33,3 @@ while running:
     cars.update()
     gf.check_ebee_cars_collisions(ebee,cars)   #Check for collisions between ebee and cars
     gf.update_screen(screen , ebee, cars)
-
-            

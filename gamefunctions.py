@@ -4,10 +4,6 @@ import random
 from settings import Settings
 from time import sleep
 
-#ebeeX=
-#ebeeY=
-#ebeeXmove=0.5
-#ebeeYmove=0.5
 settings = Settings()
 
 def update_screen(screen, ebee,cars):
@@ -34,15 +30,7 @@ def check_events(ebee):
                       if(event.key == pygame.K_LEFT or event.key==pygame.K_RIGHT):
                            ebee.moving_left=False
                            ebee.moving_right=False
-                           
-                #elif event.type == pygame.KEYDOWN:
-                    #if(event.key==pygame.K_LEFT):
-                         
-                         
-                    
-                #elif event.type == pygame.KEYUP:
-                    #if(check_keyup_events(event,ship))
-
+                            
                 #elif event.type == pygame.MOUSEBUTTONDOWN:
                      #mouse_x, mouse_y = pygame.mouse.get_pos()
                 #     check_play_button(ai_settings, screen, stats, sb,  play_button, ship, aliens, bullets, mouse_x, mouse_y)
