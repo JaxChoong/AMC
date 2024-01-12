@@ -1,7 +1,6 @@
 import pygame
 import sys
-from ebee import Ebee
-from cars import Cars
+import random
 
 def update_screen(screen, ebee,cars):
        pygame.display.flip()
@@ -26,6 +25,18 @@ def check_events():
                 #     mouse_x, mouse_y = pygame.mouse.get_pos()
                 #     check_play_button(ai_settings, screen, stats, sb,  play_button, ship, aliens, bullets, mouse_x, mouse_y)
                     
+
+def randomizeLanes():
+    # Function to randomise lanes for cars
+    lane_number = random.randint(1,3)
+    if lane_number == 1:
+        lane = 50
+    elif lane_number == 2:
+        lane = 170
+    elif lane_number == 3:
+        lane = 300
+    return lane
+
 
 
 

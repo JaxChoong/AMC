@@ -24,13 +24,7 @@ pygame.display.set_caption("Average MMU Commute")
 clock = pygame.time.Clock()
 running = True      #Running state of the game.
 ebee = Ebee(screen)
-lane = random.randint(1,3)
-if lane == 1:
-    lane = 50
-elif lane == 2:
-    lane = 170
-elif lane == 3:
-    lane = 300
+lane = gf.randomizeLanes()
 cars = Cars(screen,lane,1)
 
 while running:
