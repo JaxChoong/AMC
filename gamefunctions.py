@@ -1,11 +1,15 @@
 import pygame
 import sys
 import random
+from settings import Settings
+
+settings = Settings()
 
 def update_screen(screen, ebee,cars):
-       pygame.display.flip()
+       screen.fill(settings.bg_color)
        ebee.blitme()
        cars.blitme()
+       pygame.display.flip()
 
        
 def check_events():
