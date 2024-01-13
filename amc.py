@@ -13,6 +13,7 @@ import gamefunctions as gf
 from ebee import Ebee
 from cars import Cars
 from settings import Settings
+from LeaderBoard import Score
 
 #Setup pygame (Jax)
 
@@ -25,11 +26,12 @@ running = True      #Running state of the game.
 ebee = Ebee(screen)
 lane = gf.randomizeLanes()
 cars = Cars(screen, lane)
+score = Score()
 
 
 while running:
     gf.check_events(ebee)
     ebee.movementUpdate()
-    cars.update()
+    cars.update(score)
     gf.check_ebee_cars_collisions(ebee,cars)   #Check for collisions between ebee and cars
     gf.update_screen(screen , ebee, cars)

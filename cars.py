@@ -3,6 +3,7 @@ import pygame
 from settings import Settings 
 import random
 import gamefunctions as gf
+import LeaderBoard
 
 settings = Settings()
 
@@ -24,9 +25,9 @@ class Cars(Sprite):
         """Draw the car at its current position"""
         self.screen.blit(self.image, self.rect)
 
-    def update(self):
+    def update(self, score):
         # Move the cars down
-        edge = self.check_edges()
+        edge = self.check_edges(score)
         if edge:
             self.rect.centery = 0
             self.y = 0
@@ -34,9 +35,9 @@ class Cars(Sprite):
             self.y += settings.car_speed_factor
             self.rect.centery = self.y
 
-    def check_edges(self):
+    def check_edges(self, score):
         if self.rect.top >= 600:
-            self.resetCars()
+            self.resetCars(score)
         else:
             return False
         
@@ -54,9 +55,10 @@ class Cars(Sprite):
             self.image = pygame.transform.scale(self.image, (90, 100))
         return self.image
 
-    def resetCars(self):
+    def resetCars(self, score):
         self.lane = gf.randomizeLanes()
         self.car_image = self.randomizeCars()
         self.rect.centery = 0
         self.rect.centerx = self.lane
         self.y = 0
+        score.score += 50
