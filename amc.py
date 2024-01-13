@@ -26,7 +26,7 @@ running = True      #Running state of the game.
 ebee = Ebee(screen)
 lane = gf.randomizeLanes()
 cars = Cars(screen, lane)
-score = Score()
+score = Score(game_settings, screen)
 
 
 while running:
@@ -34,4 +34,4 @@ while running:
     ebee.movementUpdate()
     cars.update(score)
     gf.check_ebee_cars_collisions(ebee,cars)   #Check for collisions between ebee and cars
-    gf.update_screen(screen , ebee, cars)
+    gf.update_screen(screen , ebee, cars, score)

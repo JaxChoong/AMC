@@ -3,13 +3,16 @@ import sys
 import random
 from settings import Settings
 from time import sleep
+import gamescore
 
 settings = Settings()
 
-def update_screen(screen, ebee,cars):
+def update_screen(screen, ebee,cars, score):
        screen.fill(settings.bg_color)
        ebee.blitme()
        cars.blitme()
+       score.prep_score(settings, screen)
+       score.show_score(screen)
        pygame.display.flip()
 
        
