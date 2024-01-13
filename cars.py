@@ -3,7 +3,7 @@ import pygame
 from settings import Settings 
 import random
 import gamefunctions as gf
-import LeaderBoard
+import gamescore
 
 settings = Settings()
 

@@ -13,7 +13,7 @@ import gamefunctions as gf
 from ebee import Ebee
 from cars import Cars
 from settings import Settings
-from LeaderBoard import Score
+from gamescore import Score
 
 #Setup pygame (Jax)
 
