@@ -6,6 +6,7 @@ from time import sleep
 import gamescore
 
 settings = Settings()
+game_over = False
 
 def update_screen(screen, ebee,cars, score):
        screen.fill(settings.bg_color)
@@ -14,6 +15,8 @@ def update_screen(screen, ebee,cars, score):
        score.prep_score(settings, screen)
        score.show_score(screen)
        pygame.display.flip()
+            
+
 
        
 def check_events(ebee):
@@ -51,6 +54,21 @@ def randomizeLanes():
     return lane
 
 def check_ebee_cars_collisions(ebee,cars):
+    global game_over
     collisions = pygame.sprite.collide_rect(ebee,cars)   #Check if the rects of the cars and ebee collided.
     if collisions:
-        sleep(0.1)    #Turns of screen for SOMETIME
+        sleep(0.5)
+        
+        #def show_game_over(self, settings, screen):
+        #  #  """Initialize gameover screen"""
+        #   self.screen = screen
+        #   self.screen_rect = screen.get_rect()
+        #   self.settings = settings
+        #
+        #  #  Font settings for scoring information
+        #   self.text_color = (255,255,255)
+        #   self.font = pygame.font.SysFont(None,54)
+        #
+        #   self.showgameover = self.font.render("Game Over", True, self.text_color, settings.bg_color)
+        #   self.screen.blit(self.showgameover)
+
