@@ -11,7 +11,7 @@ class Ebee(Sprite):
         
         #Load ebee and get its rect.
         self.image = pygame.image.load('images\ebee.png')     #import the ebee image
-        self.image = pygame.transform.scale(self.image, (60, 100))      #resize ebee image
+        self.image = pygame.transform.scale(self.image, (40, 90))      #resize ebee image
         self.rect = self.image.get_rect()
         self.screen_rect = screen.get_rect()
 
