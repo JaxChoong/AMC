@@ -8,15 +8,18 @@ import gamescore
 settings = Settings()
 game_over = False
 
-def update_screen(screen, ebee,cars, score):
+def update_screen(screen, ebee,cars, score,settings):
        screen.fill(settings.bg_color)
        ebee.blitme()
        cars.blitme()
        score.prep_score(settings, screen)
        score.show_score(screen)
-       pygame.display.flip()
-            
-
+       if not settings.running:
+            print("Play")
+  
+       if settings.game_over:
+          show_game_over(settings,screen)
+       pygame.display.flip()    # Draws / shows newest screen.
 
        
 def check_events(ebee):
@@ -53,22 +56,22 @@ def randomizeLanes():
         lane = 300
     return lane
 
-def check_ebee_cars_collisions(ebee,cars):
-    global game_over
+def check_ebee_cars_collisions(ebee,cars,settings):
     collisions = pygame.sprite.collide_rect(ebee,cars)   #Check if the rects of the cars and ebee collided.
     if collisions:
-        sleep(0.5)
+        settings.car_speed_factor=0
+        #show_game_over(ebee,settings, screen)
+        settings.running = False
+        settings.game_over = True
+         # ur mom
         
-        #def show_game_over(self, settings, screen):
-        #  #  """Initialize gameover screen"""
-        #   self.screen = screen
-        #   self.screen_rect = screen.get_rect()
-        #   self.settings = settings
-        #
-        #  #  Font settings for scoring information
-        #   self.text_color = (255,255,255)
-        #   self.font = pygame.font.SysFont(None,54)
-        #
-        #   self.showgameover = self.font.render("Game Over", True, self.text_color, settings.bg_color)
-        #   self.screen.blit(self.showgameover)
-
+def show_game_over(settings, screen):
+    #  Initialize gameover screen
+     screen_rect = screen.get_rect()
+  
+    #  Font settings for scoring information
+     text_color = (25,15,25)
+     font = pygame.font.SysFont(None,54)
+     showgameover = font.render("Game Over", True, text_color, settings.bg_color)
+     dest=(100,400)
+     screen.blit(showgameover,dest)

@@ -22,16 +22,16 @@ pygame.init()
 screen = pygame.display.set_mode((game_settings.screen_width,game_settings.screen_height))    #Set the screen size
 pygame.display.set_caption("Average MMU Commute")
 clock = pygame.time.Clock()
-running = True      #Running state of the game.
 ebee = Ebee(screen)
 lane = gf.randomizeLanes()
 cars = Cars(screen, lane)
 score = Score(game_settings, screen)
 
 
-while running:
+while True:
     gf.check_events(ebee)
-    ebee.movementUpdate()
-    cars.update(score)
-    gf.check_ebee_cars_collisions(ebee,cars)   #Check for collisions between ebee and cars
-    gf.update_screen(screen , ebee, cars, score)
+    if game_settings.running:
+        ebee.movementUpdate()
+        cars.update(score)
+        gf.check_ebee_cars_collisions(ebee,cars,game_settings)   #Check for collisions between ebee and car 
+    gf.update_screen(screen , ebee, cars, score,game_settings)
