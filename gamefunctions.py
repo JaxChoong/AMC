@@ -70,8 +70,8 @@ def show_game_over(settings, screen):
      screen_rect = screen.get_rect()
   
     #  Font settings for scoring information
-     text_color = (255,255,255)
+     text_color = (25,15,25)
      font = pygame.font.SysFont(None,54)
      showgameover = font.render("Game Over", True, text_color, settings.bg_color)
-     dest=(75,250)
+     dest=(100,400)
      screen.blit(showgameover,dest)
