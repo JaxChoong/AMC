@@ -15,7 +15,6 @@ class Cars(Sprite):
         self.screen = screen
         self.image = self.randomizeCars()
         self.rect = self.image.get_rect()
-        self.rect = self.image.get_rect()
         self.rect.centerx = lane
         self.rect.y = 0
         self.y = float(self.rect.y)

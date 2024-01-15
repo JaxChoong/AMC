@@ -2,16 +2,15 @@ import pygame
 import sys
 import random
 from settings import Settings
-from time import sleep
-import gamescore
+from cars import Cars
 
 settings = Settings()
 game_over = False
 
-def update_screen(screen, ebee,cars, score,settings):
+def update_screen(screen, ebee,carsGroup, score,settings):
        screen.fill(settings.bg_color)
        ebee.blitme()
-       cars.blitme()
+       carsGroup.draw(screen)
        score.prep_score(settings, screen)
        score.show_score(screen)
        if not settings.running:
@@ -56,8 +55,8 @@ def randomizeLanes():
         lane = 300
     return lane
 
-def check_ebee_cars_collisions(ebee,cars,settings):
-    collisions = pygame.sprite.collide_rect(ebee,cars)   #Check if the rects of the cars and ebee collided.
+def check_ebee_cars_collisions(ebee,carsGroup,settings):
+    collisions = pygame.sprite.spritecollide(ebee,carsGroup,False)   #Check if the rects of the cars and ebee collided.
     if collisions:
         settings.car_speed_factor=0
         #show_game_over(ebee,settings, screen)
@@ -75,3 +74,8 @@ def show_game_over(settings, screen):
      showgameover = font.render("Game Over", True, text_color, settings.bg_color)
      dest=(75,250)
      screen.blit(showgameover,dest)
+
+def create_cars(screen,lane,carsGroup):
+    # Create singular car
+    car = Cars(screen,lane)
+    carsGroup.add(car)

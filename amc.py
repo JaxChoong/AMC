@@ -9,9 +9,10 @@
 # Phones: 0168262342 | 0168711296 | 0136573888
 # ********************************************************* 
 import pygame
+from pygame.sprite import Group
 import gamefunctions as gf
 from ebee import Ebee
-from cars import Cars
+from cars import Cars   
 from settings import Settings
 from gamescore import Score
 
@@ -24,14 +25,16 @@ pygame.display.set_caption("Average MMU Commute")
 clock = pygame.time.Clock()
 ebee = Ebee(screen)
 lane = gf.randomizeLanes()
-cars = Cars(screen, lane)
+
 score = Score(game_settings, screen)
+carsGroup = Group()
+gf.create_cars(screen,lane,carsGroup)
 
 
 while True:
     gf.check_events(ebee)
     if game_settings.running:
         ebee.movementUpdate()
-        cars.update(score)
-        gf.check_ebee_cars_collisions(ebee,cars,game_settings)   #Check for collisions between ebee and car 
-    gf.update_screen(screen , ebee, cars, score,game_settings)
+        carsGroup.update(score)
+        gf.check_ebee_cars_collisions(ebee,carsGroup,game_settings)   #Check for collisions between ebee and car 
+    gf.update_screen(screen , ebee, carsGroup, score,game_settings)
