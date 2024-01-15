@@ -14,7 +14,7 @@ def update_screen(screen, ebee,carsGroup, score,settings):
        score.prep_score(settings, screen)
        score.show_score(screen)
        if not settings.running:
-            print("Play")
+            print("")
   
        if settings.game_over:
           show_game_over(settings,screen)
@@ -72,7 +72,7 @@ def show_game_over(settings, screen):
      text_color = (255,0,0)
      font = pygame.font.SysFont(None,54)
      showgameover = font.render("Game Over", True, text_color, settings.bg_color)
-     dest=(100,400)
+     dest=(75,250)
      screen.blit(showgameover,dest)
 
 def create_cars(screen,lane,carsGroup):
