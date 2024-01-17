@@ -3,6 +3,8 @@ import sys
 import random
 from settings import Settings
 from cars import Cars
+import gamescore
+from playbutton import Button
 
 settings = Settings()
 game_over = False
@@ -14,7 +16,8 @@ def update_screen(screen, ebee,carsGroup, score,settings):
        score.prep_score(settings, screen)
        score.show_score(screen)
        if not settings.running:
-            print("")
+            #play button
+            sys.exit()
   
        if settings.game_over:
           show_game_over(settings,screen)
