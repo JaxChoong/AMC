@@ -9,7 +9,7 @@ from playbutton import Button
 settings = Settings()
 game_over = False
 
-def update_screen(screen, ebee,carsGroup, score,settings):
+def update_screen(settings, screen, score, play_button, ebee, carsGroup, mouse_x, mouse_y):
        screen.fill(settings.bg_color)
        ebee.blitme()
        carsGroup.draw(screen)
@@ -17,14 +17,14 @@ def update_screen(screen, ebee,carsGroup, score,settings):
        score.show_score(screen)
        if not settings.running:
             #play button
-            sys.exit()
+            play_button.draw_button()
   
        if settings.game_over:
           show_game_over(settings,screen)
        pygame.display.flip()    # Draws / shows newest screen.
 
        
-def check_events(ebee):
+def check_events(ebee, play_button, screen, score, carsGroup):
     #Respond to keypresses and mouse events.
     for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -42,10 +42,23 @@ def check_events(ebee):
                            ebee.moving_left=False
                            ebee.moving_right=False
                             
-                #elif event.type == pygame.MOUSEBUTTONDOWN:
-                     #mouse_x, mouse_y = pygame.mouse.get_pos()
-                #     check_play_button(ai_settings, screen, stats, sb,  play_button, ship, aliens, bullets, mouse_x, mouse_y)
+                elif event.type == pygame.MOUSEBUTTONDOWN:
+                    mouse_x, mouse_y = pygame.mouse.get_pos()
+                    check_play_button(settings, screen, score, play_button, ebee, carsGroup, mouse_x, mouse_y)
                     
+def check_play_button(settings, screen, score,  play_button, ebee, carsGroup, mouse_x, mouse_y):
+    """Start a new game when the player clicks Play."""
+    if play_button.rect.collidepoint(mouse_x,mouse_y):
+        button_clicked = play_button.rect.collidepoint(mouse_x, mouse_y)
+        if button_clicked and not settings.running:
+            # Reset the game settings
+            #settings.initialize_dynamic_settings()
+
+            #Reset game statistics
+            settings.running = True
+
+            # Reset the scoreboard images.
+            score.prep_score()
 
 def randomizeLanes():
     # Function to randomise lanes for cars

@@ -15,6 +15,7 @@ from ebee import Ebee
 from cars import Cars   
 from settings import Settings
 from gamescore import Score
+from playbutton import Button
 
 #Setup pygame (Jax)
 
@@ -25,6 +26,7 @@ pygame.display.set_caption("Average MMU Commute")
 clock = pygame.time.Clock()
 ebee = Ebee(screen)
 lane = gf.randomizeLanes()
+play_button = Button(game_settings, screen, "Play")
 
 score = Score(game_settings, screen)
 carsGroup = Group()
@@ -32,9 +34,9 @@ gf.create_cars(screen,lane,carsGroup)
 
 
 while True:
-    gf.check_events(ebee)
+    gf.check_events(ebee, play_button, screen, score, carsGroup)
     if game_settings.running:
         ebee.movementUpdate()
         carsGroup.update(score)
         gf.check_ebee_cars_collisions(ebee,carsGroup,game_settings)   #Check for collisions between ebee and car 
-    gf.update_screen(screen , ebee, carsGroup, score,game_settings)
+    gf.update_screen(game_settings, screen, score, play_button, ebee, carsGroup)

@@ -13,3 +13,8 @@ class Settings():
 
         # Settings for ebee
         self.ebee_speed_factor = 0.3
+
+    #def initialize_dynamic_settings(self):
+    #    """Initialize settings that change throughout the game."""
+    #    self.ebee_speed_factor = 0.3
+    #    self.cars_speed_factor = 0.3
