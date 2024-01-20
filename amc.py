@@ -34,10 +34,11 @@ gf.create_cars(screen,lane,carsGroup)
 
 
 while True:
-    gf.check_events(ebee, play_button, screen, score, carsGroup)
+    mouse_x, mouse_y = pygame.mouse.get_pos()
+    gf.check_events(ebee, play_button, screen, score, carsGroup, mouse_x, mouse_y)
     if game_settings.running:
         ebee.movementUpdate()
         carsGroup.update(score)
         gf.check_ebee_cars_collisions(ebee,carsGroup,game_settings)   #Check for collisions between ebee and car 
         gf.scale_game_difficulty(game_settings,score,screen,lane,carsGroup)    # Scales up game diff depending on score
-    gf.update_screen(game_settings, screen, score, play_button, ebee, carsGroup)
+    gf.update_screen(game_settings, screen, score, play_button, ebee, carsGroup, mouse_x, mouse_y)

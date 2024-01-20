@@ -9,7 +9,7 @@ from playbutton import Button
 settings = Settings()
 game_over = False
 
-def update_screen(settings, screen, score, play_button, ebee, carsGroup):
+def update_screen(settings, screen, score, play_button, ebee, carsGroup, mouse_x, mouse_y):
        # Update the screen every time th game loops
        screen.fill(settings.bg_color)
        ebee.blitme()
@@ -19,13 +19,14 @@ def update_screen(settings, screen, score, play_button, ebee, carsGroup):
        if not settings.running:
             #play button
             play_button.draw_button()
+            check_play_button(settings, screen, score,  play_button, ebee, carsGroup, mouse_x, mouse_y)
   
        if settings.game_over:
           show_game_over(settings,screen)
        pygame.display.flip()    # Draws / shows newest screen.
 
        
-def check_events(ebee, play_button, screen, score, carsGroup):
+def check_events(ebee, play_button, screen, score, carsGroup, mouse_x, mouse_y):
     #Respond to keypresses and mouse events.
     for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -44,7 +45,6 @@ def check_events(ebee, play_button, screen, score, carsGroup):
                            ebee.moving_right=False
                             
                 elif event.type == pygame.MOUSEBUTTONDOWN:
-                    mouse_x, mouse_y = pygame.mouse.get_pos()
                     check_play_button(settings, screen, score, play_button, ebee, carsGroup, mouse_x, mouse_y)
                     
 def check_play_button(settings, screen, score,  play_button, ebee, carsGroup, mouse_x, mouse_y):
@@ -59,7 +59,7 @@ def check_play_button(settings, screen, score,  play_button, ebee, carsGroup, mo
             settings.running = True
 
             # Reset the scoreboard images.
-            score.prep_score()
+            score.prep_score(settings, screen)
 
 def randomizeLanes():
     # Function to randomise lanes for cars
