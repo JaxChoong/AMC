@@ -3,9 +3,7 @@ import sys
 import random
 from cars import Cars
 
-
-
-def update_screen(settings, screen, score, play_button, ebee, carsGroup):
+def update_screen(settings, screen, score, play_button, ebee, carsGroup, mouse_x, mouse_y):
     # Update the screen every time th game loops
     screen.fill(settings.bg_color)
     ebee.blitme()
@@ -23,7 +21,7 @@ def update_screen(settings, screen, score, play_button, ebee, carsGroup):
     pygame.display.flip()
 
        
-def check_events(ebee, play_button,settings, screen, score, carsGroup):
+def check_events(ebee, play_button,settings, screen, score, carsGroup, mouse_x, mouse_y):
     #Respond to keypresses and mouse events.
     for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -45,7 +43,7 @@ def check_events(ebee, play_button,settings, screen, score, carsGroup):
                     mouse_x, mouse_y = pygame.mouse.get_pos()
                     check_play_button(settings, screen, score, play_button, ebee, carsGroup, mouse_x, mouse_y)
                     
-def check_play_button(settings, screen, score,  play_button, ebee, carsGroup, mouse_x, mouse_y):
+def check_play_button(settings, screen, score, play_button, ebee, carsGroup, mouse_x, mouse_y):
     # Start a new game when the player clicks Play.
     if play_button.rect.collidepoint(mouse_x,mouse_y):
         button_clicked = play_button.rect.collidepoint(mouse_x, mouse_y)
