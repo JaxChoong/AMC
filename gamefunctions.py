@@ -92,24 +92,29 @@ def show_game_over(settings, screen):
      dest=(75,250)
      screen.blit(showgameover,dest)
 
-def create_cars(screen,lane,carsGroup):
-    # Create singular car
-    car = Cars(screen,lane)
+def create_cars(screen, existing_lanes, carsGroup):
+    # Create a singular car with a unique lane
+    new_lane = randomizeLanes()
+    while new_lane in existing_lanes:
+        new_lane = randomizeLanes()  # Keep generating a new lane until it's unique
+
+    car = Cars(screen, new_lane)
     carsGroup.add(car)
+    existing_lanes.append(new_lane)
 
 
-def scale_game_difficulty(settings,score,screen,lane,carsGroup):   #Function to scale up difficulty
+def scale_game_difficulty(settings,score,screen,existing_lanes,carsGroup):   #Function to scale up difficulty
     current_score = score.score
     if current_score == 300:
         if len(carsGroup)<2:
-            create_cars(screen,lane,carsGroup)
+            create_cars(screen, existing_lanes, carsGroup)
             settings.score_scale += 50
     elif current_score == 1000:
         if len(carsGroup)<3:
-            create_cars(screen,lane,carsGroup)
+            create_cars(screen, existing_lanes, carsGroup)
             settings.score_scale += 100
     elif current_score == 5000:
         if len(carsGroup)<4:
-            create_cars(screen,lane,carsGroup)
+            create_cars(screen, existing_lanes, carsGroup)
             settings.score_scale += 200
         

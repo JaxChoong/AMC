@@ -18,7 +18,7 @@ class Cars(Sprite):
         self.rect.centerx = lane
         self.rect.y = 0
         self.y = float(self.rect.y)
-        self.speed_factor = settings.car_speed_factor
+        self.speed_factor = random.uniform(0.2, 0.6)
 
     def blitme(self):
         # Draw the car at its current position
@@ -31,7 +31,7 @@ class Cars(Sprite):
             self.rect.centery = 0
             self.y = 0
         elif not edge:
-            self.y += settings.car_speed_factor
+            self.y += self.speed_factor
             self.rect.centery = self.y
 
     def check_edges(self, score,settings):
