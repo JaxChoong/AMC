@@ -101,12 +101,15 @@ def create_cars(screen,lane,carsGroup):
 def scale_game_difficulty(settings,score,screen,lane,carsGroup):   #Function to scale up difficulty
     current_score = score.score
     if current_score == 300:
-        create_cars(screen,lane,carsGroup)
-        settings.score_scale += 50
+        if len(carsGroup)<2:
+            create_cars(screen,lane,carsGroup)
+            settings.score_scale += 50
     elif current_score == 1000:
-        create_cars(screen,lane,carsGroup)
-        settings.score_scale += 100
+        if len(carsGroup)<3:
+            create_cars(screen,lane,carsGroup)
+            settings.score_scale += 100
     elif current_score == 5000:
-        create_cars(screen,lane,carsGroup)
-        settings.score_scale += 200
+        if len(carsGroup)<4:
+            create_cars(screen,lane,carsGroup)
+            settings.score_scale += 200
         
