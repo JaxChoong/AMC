@@ -26,11 +26,12 @@ pygame.display.set_caption("Average MMU Commute")
 clock = pygame.time.Clock()
 ebee = Ebee(screen)
 lane = gf.randomizeLanes()
+existing_lanes = []
 play_button = Button(game_settings, screen, "Play")
 
 score = Score(game_settings, screen)
 carsGroup = Group()
-gf.create_cars(screen,lane,carsGroup)
+gf.create_cars(screen,existing_lanes,carsGroup)
 
 
 while True:
@@ -40,5 +41,5 @@ while True:
         ebee.movementUpdate()
         carsGroup.update(score)
         gf.check_ebee_cars_collisions(ebee,carsGroup,game_settings)   #Check for collisions between ebee and car 
-        gf.scale_game_difficulty(game_settings,score,screen,lane,carsGroup)    # Scales up game diff depending on score
-    gf.update_screen(game_settings, screen, score, play_button, ebee, carsGroup, mouse_x, mouse_y)
+        gf.scale_game_difficulty(game_settings,score,screen,existing_lanes,carsGroup)    # Scales up game diff depending on score
+    gf.update_screen(game_settings, screen, score, play_button, ebee, carsGroup)
