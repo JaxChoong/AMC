@@ -10,6 +10,7 @@ class Settings():
 
         # Settings for cars
         self.car_speed_factor = 0.3
+        self.score_scale = 50
 
         # Settings for ebee
         self.ebee_speed_factor = 0.3
@@ -18,3 +19,4 @@ class Settings():
     #    """Initialize settings that change throughout the game."""
     #    self.ebee_speed_factor = 0.3
     #    self.cars_speed_factor = 0.3
+    #    self.score_scale = 50

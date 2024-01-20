@@ -9,7 +9,8 @@ from playbutton import Button
 settings = Settings()
 game_over = False
 
-def update_screen(settings, screen, score, play_button, ebee, carsGroup, mouse_x, mouse_y):
+def update_screen(settings, screen, score, play_button, ebee, carsGroup):
+       # Update the screen every time th game loops
        screen.fill(settings.bg_color)
        ebee.blitme()
        carsGroup.draw(screen)
@@ -47,7 +48,7 @@ def check_events(ebee, play_button, screen, score, carsGroup):
                     check_play_button(settings, screen, score, play_button, ebee, carsGroup, mouse_x, mouse_y)
                     
 def check_play_button(settings, screen, score,  play_button, ebee, carsGroup, mouse_x, mouse_y):
-    """Start a new game when the player clicks Play."""
+    # Start a new game when the player clicks Play.
     if play_button.rect.collidepoint(mouse_x,mouse_y):
         button_clicked = play_button.rect.collidepoint(mouse_x, mouse_y)
         if button_clicked and not settings.running:
@@ -82,7 +83,7 @@ def check_ebee_cars_collisions(ebee,carsGroup,settings):
         
 def show_game_over(settings, screen):
     #  Initialize gameover screen
-     screen_rect = screen.get_rect()
+    #  screen_rect = screen.get_rect()
   
     #  Font settings for "Game Over"  text
      text_color = (255,0,0)
@@ -95,3 +96,17 @@ def create_cars(screen,lane,carsGroup):
     # Create singular car
     car = Cars(screen,lane)
     carsGroup.add(car)
+
+
+def scale_game_difficulty(settings,score,screen,lane,carsGroup):   #Function to scale up difficulty
+    current_score = score.score
+    if current_score == 300:
+        create_cars(screen,lane,carsGroup)
+        settings.score_scale += 50
+    elif current_score == 1000:
+        create_cars(screen,lane,carsGroup)
+        settings.score_scale += 100
+    elif current_score == 5000:
+        create_cars(screen,lane,carsGroup)
+        settings.score_scale += 200
+        

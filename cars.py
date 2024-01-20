@@ -21,12 +21,12 @@ class Cars(Sprite):
         self.speed_factor = settings.car_speed_factor
 
     def blitme(self):
-        """Draw the car at its current position"""
+        # Draw the car at its current position
         self.screen.blit(self.image, self.rect)
 
     def update(self, score):
         # Move the cars down
-        edge = self.check_edges(score)
+        edge = self.check_edges(score,settings)
         if edge:
             self.rect.centery = 0
             self.y = 0
@@ -34,9 +34,10 @@ class Cars(Sprite):
             self.y += settings.car_speed_factor
             self.rect.centery = self.y
 
-    def check_edges(self, score):
+    def check_edges(self, score,settings):
+        #Check if cars have reached bottom of the screen
         if self.rect.top >= 600:
-            self.resetCars(score)
+            self.resetCars(score,settings)
         else:
             return False
         
@@ -54,10 +55,10 @@ class Cars(Sprite):
             self.image = pygame.transform.scale(self.image, (90, 100))
         return self.image
 
-    def resetCars(self, score):
+    def resetCars(self, score,settings):     # Rest cars back to the top of screen
         self.lane = gf.randomizeLanes()
         self.car_image = self.randomizeCars()
         self.rect.centery = 0
         self.rect.centerx = self.lane
         self.y = 0
-        score.score += 50
+        score.score += settings.score_scale
