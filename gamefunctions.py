@@ -1,32 +1,29 @@
 import pygame
 import sys
 import random
-from settings import Settings
 from cars import Cars
-import gamescore
-from playbutton import Button
 
-settings = Settings()
-game_over = False
 
-def update_screen(settings, screen, score, play_button, ebee, carsGroup, mouse_x, mouse_y):
-       # Update the screen every time th game loops
-       screen.fill(settings.bg_color)
-       ebee.blitme()
-       carsGroup.draw(screen)
-       score.prep_score(settings, screen)
-       score.show_score(screen)
-       if not settings.running:
-            #play button
-            play_button.draw_button()
-            check_play_button(settings, screen, score,  play_button, ebee, carsGroup, mouse_x, mouse_y)
-  
-       if settings.game_over:
-          show_game_over(settings,screen)
-       pygame.display.flip()    # Draws / shows newest screen.
+
+def update_screen(settings, screen, score, play_button, ebee, carsGroup):
+    # Update the screen every time th game loops
+    screen.fill(settings.bg_color)
+    ebee.blitme()
+    carsGroup.draw(screen)
+    score.prep_score(settings, screen)
+    score.show_score(screen)
+    if not settings.running:
+        #play button
+        play_button.draw_button()
+
+    if settings.game_over:
+            #  Initialize gameover screen
+        show_game_over(settings,screen)
+    # Draws / shows newest screen.
+    pygame.display.flip()
 
        
-def check_events(ebee, play_button, screen, score, carsGroup, mouse_x, mouse_y):
+def check_events(ebee, play_button,settings, screen, score, carsGroup):
     #Respond to keypresses and mouse events.
     for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -45,6 +42,7 @@ def check_events(ebee, play_button, screen, score, carsGroup, mouse_x, mouse_y):
                            ebee.moving_right=False
                             
                 elif event.type == pygame.MOUSEBUTTONDOWN:
+                    mouse_x, mouse_y = pygame.mouse.get_pos()
                     check_play_button(settings, screen, score, play_button, ebee, carsGroup, mouse_x, mouse_y)
                     
 def check_play_button(settings, screen, score,  play_button, ebee, carsGroup, mouse_x, mouse_y):
@@ -57,7 +55,7 @@ def check_play_button(settings, screen, score,  play_button, ebee, carsGroup, mo
 
             #Reset game statistics
             settings.running = True
-
+            settings.game_over = False
             # Reset the scoreboard images.
             score.prep_score(settings, screen)
 
@@ -79,12 +77,8 @@ def check_ebee_cars_collisions(ebee,carsGroup,settings):
         #show_game_over(ebee,settings, screen)
         settings.running = False
         settings.game_over = True
-         # ur mom
         
 def show_game_over(settings, screen):
-    #  Initialize gameover screen
-    #  screen_rect = screen.get_rect()
-  
     #  Font settings for "Game Over"  text
      text_color = (255,0,0)
      font = pygame.font.SysFont(None,54)

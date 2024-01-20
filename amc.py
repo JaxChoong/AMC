@@ -19,27 +19,27 @@ from playbutton import Button
 
 #Setup pygame (Jax)
 
-game_settings = Settings()
+settings = Settings()
 pygame.init()
-screen = pygame.display.set_mode((game_settings.screen_width,game_settings.screen_height))    #Set the screen size
+screen = pygame.display.set_mode((settings.screen_width,settings.screen_height))    #Set the screen size
 pygame.display.set_caption("Average MMU Commute")
 clock = pygame.time.Clock()
 ebee = Ebee(screen)
 lane = gf.randomizeLanes()
 existing_lanes = []
-play_button = Button(game_settings, screen, "Play")
+play_button = Button(settings, screen, "Play")
 
-score = Score(game_settings, screen)
+score = Score(settings, screen)
 carsGroup = Group()
 gf.create_cars(screen,existing_lanes,carsGroup)
 
 
 while True:
-    mouse_x, mouse_y = pygame.mouse.get_pos()
-    gf.check_events(ebee, play_button, screen, score, carsGroup, mouse_x, mouse_y)
-    if game_settings.running:
+    gf.check_events(ebee, play_button,settings, screen, score, carsGroup)
+    if settings.running:
         ebee.movementUpdate()
         carsGroup.update(score)
-        gf.check_ebee_cars_collisions(ebee,carsGroup,game_settings)   #Check for collisions between ebee and car 
-        gf.scale_game_difficulty(game_settings,score,screen,existing_lanes,carsGroup)    # Scales up game diff depending on score
-    gf.update_screen(game_settings, screen, score, play_button, ebee, carsGroup)
+        gf.check_ebee_cars_collisions(ebee,carsGroup,settings)   #Check for collisions between ebee and car 
+        gf.scale_game_difficulty(settings,score,screen,existing_lanes,carsGroup)    # Scales up game diff depending on score
+        
+    gf.update_screen(settings, screen, score, play_button, ebee, carsGroup)
