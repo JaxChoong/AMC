@@ -2,6 +2,7 @@ import pygame
 import sys
 import random
 from cars import Cars
+import LeaderBoard as lb
 
 def update_screen(settings, screen, score, play_button, ebee, carsGroup):
     # Update the screen every time th game loops
@@ -13,6 +14,7 @@ def update_screen(settings, screen, score, play_button, ebee, carsGroup):
     if not settings.running:
         #play button
         play_button.draw_button()
+        # lb.update_score_list(score)
 
     if settings.game_over:
             #  Initialize gameover screen
