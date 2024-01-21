@@ -16,6 +16,9 @@ class Score():
         self.prep_score(settings, screen)
         # self.prep_high_score()
 
+    def reset_score(self):
+        self.score = 0
+
     def prep_score(self, settings, screen):
         """Turn the score into a rendered image."""
         rounded_score = int(round(self.score,-1))

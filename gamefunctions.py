@@ -47,13 +47,20 @@ def check_play_button(settings, screen, score, play_button, ebee, carsGroup, mou
     # Start a new game when the player clicks Play.
     if play_button.rect.collidepoint(mouse_x,mouse_y):
         button_clicked = play_button.rect.collidepoint(mouse_x, mouse_y)
+        print(f"idk {settings.running}")
         if button_clicked and not settings.running:
             # Reset the game settings
-            #settings.initialize_dynamic_settings()
+            settings.reset_game()
 
-            #Reset game statistics
+            #resets score
+            score.reset_score()
+
+            #Resets cars
+            carsGroup.empty()
+
             settings.running = True
             settings.game_over = False
+            print(f"your mom is {settings.running}")
             # Reset the scoreboard images.
             score.prep_score(settings, screen)
 
@@ -85,6 +92,9 @@ def show_game_over(settings, screen):
      screen.blit(showgameover,dest)
 
 def create_cars(screen, existing_lanes, carsGroup):
+    #clears existing lanes
+    existing_lanes.clear()
+
     # Create a singular car with a unique lane
     new_lane = randomizeLanes()
     while new_lane in existing_lanes:

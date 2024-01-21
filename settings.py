@@ -15,6 +15,11 @@ class Settings():
         # Settings for ebee
         self.ebee_speed_factor = 0.3
 
+    def reset_game(self):
+        self.running = False
+        self.game_over = False
+        self.car_speed_factor = self.car_speed_factor
+
     #def initialize_dynamic_settings(self):
     #    """Initialize settings that change throughout the game."""
     #    self.ebee_speed_factor = 0.3
