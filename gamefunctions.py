@@ -2,7 +2,7 @@ import pygame
 import sys
 import random
 from cars import Cars
-import LeaderBoard as lb
+import leaderboard as lb
 
 def update_screen(settings, screen, score, play_button, ebee, carsGroup):
     # Update the screen every time th game loops

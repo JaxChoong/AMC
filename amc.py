@@ -16,7 +16,7 @@ from cars import Cars
 from settings import Settings
 from gamescore import Score
 from playbutton import Button
-import LeaderBoard as lb
+import leaderboard as lb
 #Setup pygame (Jax)
 
 settings = Settings()
