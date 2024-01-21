@@ -16,7 +16,7 @@ from cars import Cars
 from settings import Settings
 from gamescore import Score
 from playbutton import Button
-
+import LeaderBoard as lb
 #Setup pygame (Jax)
 
 settings = Settings()
@@ -28,7 +28,6 @@ ebee = Ebee(screen)
 lane = gf.randomizeLanes()
 existing_lanes = []
 play_button = Button(settings, screen, "Play")
-
 mouse_x, mouse_y = pygame.mouse.get_pos()
 score = Score(settings, screen)
 carsGroup = Group()
@@ -36,10 +35,11 @@ gf.create_cars(screen,existing_lanes,carsGroup)
 
 
 while True:
-    gf.check_events(ebee, play_button,settings, screen, score, carsGroup, mouse_x, mouse_y)
+    gf.check_events(ebee, play_button,settings, screen, score, carsGroup, mouse_x, mouse_y,existing_lanes)
     if settings.running:
         ebee.movementUpdate()
-        carsGroup.update(score)
+        carsGroup.update(score,settings)
         gf.check_ebee_cars_collisions(ebee,carsGroup,settings)   #Check for collisions between ebee and car 
         gf.scale_game_difficulty(settings,score,screen,existing_lanes,carsGroup)    # Scales up game diff depending on score
-    gf.update_screen(settings, screen, score, play_button, ebee, carsGroup, mouse_x, mouse_y)
+    gf.update_screen(settings, screen, score, play_button, ebee, carsGroup)
+    # lb.show_current_score(score)

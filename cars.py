@@ -3,9 +3,8 @@ import pygame
 from settings import Settings 
 import random
 import gamefunctions as gf
-import gamescore
 
-settings = Settings()
+
 
 class Cars(Sprite):
     
@@ -24,7 +23,7 @@ class Cars(Sprite):
         # Draw the car at its current position
         self.screen.blit(self.image, self.rect)
 
-    def update(self, score):
+    def update(self, score,settings):
         # Move the cars down
         edge = self.check_edges(score,settings)
         if edge:
@@ -62,3 +61,4 @@ class Cars(Sprite):
         self.rect.centerx = self.lane
         self.y = 0
         score.score += settings.score_scale
+        self.speed_factor = random.uniform(0.2, 0.6)

@@ -3,7 +3,7 @@ import sys
 import random
 from cars import Cars
 
-def update_screen(settings, screen, score, play_button, ebee, carsGroup, mouse_x, mouse_y):
+def update_screen(settings, screen, score, play_button, ebee, carsGroup):
     # Update the screen every time th game loops
     screen.fill(settings.bg_color)
     ebee.blitme()
@@ -21,7 +21,7 @@ def update_screen(settings, screen, score, play_button, ebee, carsGroup, mouse_x
     pygame.display.flip()
 
        
-def check_events(ebee, play_button,settings, screen, score, carsGroup, mouse_x, mouse_y):
+def check_events(ebee, play_button,settings, screen, score, carsGroup, mouse_x, mouse_y,existing_lanes):
     #Respond to keypresses and mouse events.
     for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -41,26 +41,27 @@ def check_events(ebee, play_button,settings, screen, score, carsGroup, mouse_x, 
                             
                 elif event.type == pygame.MOUSEBUTTONDOWN:
                     mouse_x, mouse_y = pygame.mouse.get_pos()
-                    check_play_button(settings, screen, score, play_button, ebee, carsGroup, mouse_x, mouse_y)
+                    check_play_button(settings, screen, score, play_button, ebee, carsGroup, mouse_x, mouse_y,existing_lanes)
                     
-def check_play_button(settings, screen, score, play_button, ebee, carsGroup, mouse_x, mouse_y):
+def check_play_button(settings, screen, score, play_button, ebee, carsGroup, mouse_x, mouse_y,existing_lanes):
     # Start a new game when the player clicks Play.
     if play_button.rect.collidepoint(mouse_x,mouse_y):
         button_clicked = play_button.rect.collidepoint(mouse_x, mouse_y)
-        print(f"idk {settings.running}")
         if button_clicked and not settings.running:
             # Reset the game settings
-            settings.reset_game()
+            if settings.game_over == True:
+                settings.reset_game()
 
-            #resets score
-            score.reset_score()
+                #resets score
+                score.reset_score()
 
-            #Resets cars
-            carsGroup.empty()
-
+                #Resets cars
+                carsGroup.empty()
+                settings.game_over = False
+                settings.initialize_dynamic_settings()
+                create_cars(screen,existing_lanes,carsGroup)
             settings.running = True
-            settings.game_over = False
-            print(f"your mom is {settings.running}")
+            
             # Reset the scoreboard images.
             score.prep_score(settings, screen)
 
@@ -111,12 +112,16 @@ def scale_game_difficulty(settings,score,screen,existing_lanes,carsGroup):   #Fu
         if len(carsGroup)<2:
             create_cars(screen, existing_lanes, carsGroup)
             settings.score_scale += 50
+            print(f"{settings.score_scale}")
     elif current_score == 1000:
         if len(carsGroup)<3:
             create_cars(screen, existing_lanes, carsGroup)
             settings.score_scale += 100
+            print(f"{settings.score_scale}")
     elif current_score == 5000:
         if len(carsGroup)<4:
             create_cars(screen, existing_lanes, carsGroup)
             settings.score_scale += 200
+            settings.ebee_speed_factor = 0.5
+            print(f"{settings.score_scale}")
         
