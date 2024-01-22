@@ -17,6 +17,7 @@ from settings import Settings
 from gamescore import Score
 from playbutton import Button
 import leaderboard as lb
+
 #Setup pygame (Jax)
 
 settings = Settings()
