@@ -17,6 +17,7 @@ from settings import Settings
 from gamescore import Score
 from playbutton import Button
 import leaderboard as lb
+import sound as sfx
 
 #Setup pygame (Jax)
 

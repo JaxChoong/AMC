@@ -3,6 +3,7 @@ import sys
 import random
 from cars import Cars
 import leaderboard as lb
+import sound as sfx
 
 def update_screen(settings, screen, score, play_button, ebee, carsGroup):
     # Update the screen every time th game loops
@@ -44,10 +45,14 @@ def check_events(ebee, play_button,settings, screen, score, carsGroup, mouse_x, 
                 elif event.type == pygame.MOUSEBUTTONDOWN:
                     mouse_x, mouse_y = pygame.mouse.get_pos()
                     check_play_button(settings, screen, score, play_button, ebee, carsGroup, mouse_x, mouse_y,existing_lanes)
+                
+                     
+                
+                
                     
 def check_play_button(settings, screen, score, play_button, ebee, carsGroup, mouse_x, mouse_y,existing_lanes):
     # Start a new game when the player clicks Play.
-    if play_button.rect.collidepoint(mouse_x,mouse_y):
+    if play_button.rect.collidepoint(mouse_x,mouse_y) or event.type==pygame.K_RETURN:
         button_clicked = play_button.rect.collidepoint(mouse_x, mouse_y)
         if button_clicked and not settings.running:
             # Reset the game settings
@@ -81,6 +86,7 @@ def randomizeLanes():
 def check_ebee_cars_collisions(ebee,carsGroup,settings):
     collisions = pygame.sprite.spritecollide(ebee,carsGroup,False)   #Check if the rects of the cars and ebee collided.
     if collisions:
+        sfx.explosionSfx.play()
         settings.car_speed_factor=0
         #show_game_over(ebee,settings, screen)
         settings.running = False
@@ -111,6 +117,7 @@ def create_cars(screen, existing_lanes, carsGroup):
 def scale_game_difficulty(settings,score,screen,existing_lanes,carsGroup):   #Function to scale up difficulty
     current_score = score.score
     if current_score == 300:
+        sfx.carpassingSfx.play()
         if len(carsGroup)<2:
             create_cars(screen, existing_lanes, carsGroup)
             settings.score_scale += 50
