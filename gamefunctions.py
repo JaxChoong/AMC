@@ -15,7 +15,7 @@ def update_screen(settings, screen, score, play_button, ebee, carsGroup):
     if not settings.running:
         #play button
         play_button.draw_button()
-        # lb.update_score_list(score)
+        lb.update_score_list(settings, score)
 
     if settings.game_over:
             #  Initialize gameover screen

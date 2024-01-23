@@ -1,24 +1,28 @@
+import settings
+
 # Opens and reads leaderboard text file
 f = open("Leaderboard.txt", "r")
 LD = f.readlines()
+f.close()
 
 # Cleans up list
 for i in range(len(LD)):
     LD[i] = LD[i].strip()
 
-# Current List = ['00000', '00000', '00000', '00000', '00000']
-def update_score_list(score):
-    current_score = score.score
-    for i in range(len(LD)):
-        if current_score > LD[i]:
-            j = len(LD) - 1
-            while j > i:
-                LD[j] = LD[j - 1]
-                j -= 1
-            LD[i] = current_score
-            break  # Exit the loop
-# Records current score
+# Current List = [0, 0, 0, 0, 0]
 
+#function to call settings and score attribute
+def update_score_list(settings, score):
+    current_score = 0
+
+    #if the game not running it will record the score as string
+    if not settings.running:
+        current_score = score.score
+
+# if 10 >= int(LD[4]):
+#     print("nah")
+
+# writes the score into the file
 f = open("Leaderboard.txt", "w")
-for item in LD:
-    f.write(item + "\n")
+for line in LD:
+    f.writelines(f"{line}\n")
