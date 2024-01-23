@@ -52,7 +52,7 @@ def check_events(ebee, play_button,settings, screen, score, carsGroup, mouse_x, 
                     
 def check_play_button(settings, screen, score, play_button, ebee, carsGroup, mouse_x, mouse_y,existing_lanes):
     # Start a new game when the player clicks Play.
-    if play_button.rect.collidepoint(mouse_x,mouse_y) or event.type==pygame.K_RETURN:
+    if play_button.rect.collidepoint(mouse_x,mouse_y):
         button_clicked = play_button.rect.collidepoint(mouse_x, mouse_y)
         if button_clicked and not settings.running:
             # Reset the game settings
