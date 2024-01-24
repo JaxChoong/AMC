@@ -12,12 +12,17 @@ class Score():
         self.text_color = (255,255,255)
         self.font = pygame.font.SysFont(None,54)
 
+        #initiallize the attribute to be used in leaderboard
+        self.added_to_leaderboard = False
+
         #Prepare the initial score images.
         self.prep_score(settings, screen)
         # self.prep_high_score()
 
     def reset_score(self):
         self.score = 0
+        #same thing but this is for when the game resets
+        self.added_to_leaderboard = False
 
     def prep_score(self, settings, screen):
         """Turn the score into a rendered image."""

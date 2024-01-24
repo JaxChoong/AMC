@@ -2,7 +2,7 @@ import pygame
 import sys
 import random
 from cars import Cars
-import leaderboard as lb
+import highest_score as hs
 import sound as sfx
 
 def update_screen(settings, screen, score, play_button, ebee, carsGroup):
@@ -15,11 +15,13 @@ def update_screen(settings, screen, score, play_button, ebee, carsGroup):
     if not settings.running:
         #play button
         play_button.draw_button()
-        lb.update_score_list(settings, score)
+        # lb.update_score_list(settings, score)
 
     if settings.game_over:
             #  Initialize gameover screen
         show_game_over(settings,screen)
+        hs.update_score_list(settings, score)
+        hs.show_previous_highest_score(settings, screen)
     # Draws / shows newest screen.
     pygame.display.flip()
 
@@ -68,7 +70,7 @@ def check_play_button(settings, screen, score, play_button, ebee, carsGroup, mou
                 settings.initialize_dynamic_settings()
                 create_cars(screen,existing_lanes,carsGroup)
             settings.running = True
-            
+
             # Reset the scoreboard images.
             score.prep_score(settings, screen)
 
