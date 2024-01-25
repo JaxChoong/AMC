@@ -7,9 +7,14 @@ f.close()
 
 # Cleans up list
 for i in range(len(LB)):
-    LB[i] = int(LB[i].strip())
+    LB[i] = LB[i].strip()
 
-existing_highest_score = int(LB[0])
+#reads previous recorded highscore and user
+existing_highscore_user = LB[0]
+existing_highest_score = int(LB[1])
+
+#takes an input through terminal for new user session
+new_user = input(str("Enter your 6 letter initials: "))
 
 #function to call settings and score attribute
 def update_score_list(settings, score):
@@ -19,9 +24,9 @@ def update_score_list(settings, score):
         score.added_to_leaderboard = True  # Set a flag so it won't append the score again
 
         if current_score > existing_highest_score:
-            # writes the score into the file
+            # writes the new user and new score into the file
             f = open("highest_score_file.txt", "w")
-            f.write(str(current_score))
+            f.write( new_user  + "\n" + str(current_score))
 
 def show_previous_highest_score(settings, screen):
     #  Font settings for "Game Over"  text
