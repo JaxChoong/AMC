@@ -67,6 +67,7 @@ def check_play_button(settings, screen, score, play_button, ebee, carsGroup, mou
     # Start a new game when the player clicks Play.
     if play_button.rect.collidepoint(mouse_x,mouse_y):
         button_clicked = play_button.rect.collidepoint(mouse_x, mouse_y)
+        create_cars(screen,existing_lanes,carsGroup)
         if button_clicked and not settings.running:
             # Reset the game settings
             #(CALVIN)

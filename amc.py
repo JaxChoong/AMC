@@ -37,7 +37,6 @@ play_button = Button(settings, screen, "Play")
 mouse_x, mouse_y = pygame.mouse.get_pos()
 score = Score(settings, screen)
 carsGroup = Group()
-gf.create_cars(screen,existing_lanes,carsGroup)
 
 
 while True:
