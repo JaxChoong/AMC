@@ -29,7 +29,7 @@ class Settings():
 
     #(JAX)
     def initialize_dynamic_settings(self):
-       """Initialize settings that change throughout the game."""
+       # Initialize settings that change throughout the game.
        self.ebee_speed_factor = 0.3
        self.cars_speed_factor = 0.3
        self.score_scale = 50
