@@ -1,3 +1,8 @@
+
+# ***********************************************
+# This file is written by JAX, CALVIN AND ERIC
+# ***********************************************
+
 import pygame
 import sys
 import random
@@ -5,6 +10,7 @@ from cars import Cars
 import highest_score as hs
 import sound as sfx
 
+#(JAX)
 def update_screen(settings, screen, score, play_button, ebee, carsGroup):
     # Update the screen every time th game loops
     screen.fill(settings.bg_color)
@@ -12,20 +18,24 @@ def update_screen(settings, screen, score, play_button, ebee, carsGroup):
     carsGroup.draw(screen)
     score.prep_score(settings, screen)
     score.show_score(screen)
+
+    #(CALVIN)
     if not settings.running:
         #play button
         play_button.draw_button()
         # lb.update_score_list(settings, score)
 
+    #(ERIC)
     if settings.game_over:
             #  Initialize gameover screen
         show_game_over(settings,screen)
+        #(CALVIN)
         hs.update_score_list(settings, score)
         hs.show_previous_highest_score(settings, screen)
     # Draws / shows newest screen.
     pygame.display.flip()
 
-       
+#(ERIC)
 def check_events(ebee, play_button,settings, screen, score, carsGroup, mouse_x, mouse_y,existing_lanes):
     #Respond to keypresses and mouse events.
     for event in pygame.event.get():
@@ -43,7 +53,8 @@ def check_events(ebee, play_button,settings, screen, score, carsGroup, mouse_x, 
                       if(event.key == pygame.K_LEFT or event.key==pygame.K_RIGHT):
                            ebee.moving_left=False
                            ebee.moving_right=False
-                            
+                
+                #(CALVIN)
                 elif event.type == pygame.MOUSEBUTTONDOWN:
                     mouse_x, mouse_y = pygame.mouse.get_pos()
                     check_play_button(settings, screen, score, play_button, ebee, carsGroup, mouse_x, mouse_y,existing_lanes)
@@ -51,13 +62,14 @@ def check_events(ebee, play_button,settings, screen, score, carsGroup, mouse_x, 
                      
                 
                 
-                    
+#(JAX AND CALVIN) 
 def check_play_button(settings, screen, score, play_button, ebee, carsGroup, mouse_x, mouse_y,existing_lanes):
     # Start a new game when the player clicks Play.
     if play_button.rect.collidepoint(mouse_x,mouse_y):
         button_clicked = play_button.rect.collidepoint(mouse_x, mouse_y)
         if button_clicked and not settings.running:
             # Reset the game settings
+            #(CALVIN)
             if settings.game_over == True:
                 settings.reset_game()
 
@@ -74,6 +86,7 @@ def check_play_button(settings, screen, score, play_button, ebee, carsGroup, mou
             # Reset the scoreboard images.
             score.prep_score(settings, screen)
 
+#(JAX)
 def randomizeLanes():
     # Function to randomise lanes for cars
     lane_number = random.randint(1,3)
@@ -85,15 +98,17 @@ def randomizeLanes():
         lane = 300
     return lane
 
+#(JAX)
 def check_ebee_cars_collisions(ebee,carsGroup,settings):
     collisions = pygame.sprite.spritecollide(ebee,carsGroup,False)   #Check if the rects of the cars and ebee collided.
     if collisions:
-        sfx.explosionSfx.play()
+        sfx.explosionSfx.play() #this line was ERIC
         settings.car_speed_factor=0
         #show_game_over(ebee,settings, screen)
         settings.running = False
         settings.game_over = True
-        
+
+#(ERIC)
 def show_game_over(settings, screen):
     #  Font settings for "Game Over"  text
      text_color = (255,0,0)
@@ -102,6 +117,7 @@ def show_game_over(settings, screen):
      dest=(75,250)
      screen.blit(showgameover,dest)
 
+# These lines are written by JAX
 def create_cars(screen, existing_lanes, carsGroup):
     #clears existing lanes
     existing_lanes.clear()
@@ -123,16 +139,13 @@ def scale_game_difficulty(settings,score,screen,existing_lanes,carsGroup):   #Fu
         if len(carsGroup)<2:
             create_cars(screen, existing_lanes, carsGroup)
             settings.score_scale += 50
-            print(f"{settings.score_scale}")
     elif current_score == 1000:
         if len(carsGroup)<3:
             create_cars(screen, existing_lanes, carsGroup)
             settings.score_scale += 100
-            print(f"{settings.score_scale}")
     elif current_score == 5000:
         if len(carsGroup)<4:
             create_cars(screen, existing_lanes, carsGroup)
             settings.score_scale += 200
             settings.ebee_speed_factor = 0.5
-            print(f"{settings.score_scale}")
         

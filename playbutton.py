@@ -1,5 +1,9 @@
 import pygame.font
 
+# **********************************
+# This file is mostly from source
+# **********************************
+
 class Button():
 
     def __init__(self, settings, screen, msg):

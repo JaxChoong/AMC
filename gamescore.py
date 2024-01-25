@@ -1,5 +1,12 @@
+
+# *****************************************************
+# This file is written by CALVIN
+# (a little guidance from JAX and mostly from soruce)
+# *****************************************************
+
 import pygame
 
+# From Source
 class Score():
     def __init__(self, settings, screen):
         """Initialize scorekeeping attributes."""
@@ -19,6 +26,7 @@ class Score():
         self.prep_score(settings, screen)
         # self.prep_high_score()
 
+    #(CALVIN)
     def reset_score(self):
         self.score = 0
         #same thing but this is for when the game resets
@@ -38,6 +46,4 @@ class Score():
     def show_score(self, screen):
         """Draw scores and levels to screen."""
         self.screen.blit(self.score_image, self.score_rect)
-        # self.screen.blit(self.high_score_image,self.high_score_rect)
-        # self.screen.blit(self.level_image, self.level_rect)
 

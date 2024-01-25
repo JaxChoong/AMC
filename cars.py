@@ -1,10 +1,13 @@
+
+# **********************************
+# This file is written by JAX
+# **********************************
+
 from pygame.sprite import Sprite
 import pygame
 from settings import Settings 
 import random
 import gamefunctions as gf
-
-
 
 class Cars(Sprite):
     

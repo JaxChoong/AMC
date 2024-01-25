@@ -1,3 +1,8 @@
+
+# **********************************
+# This file is written by Calvin
+# **********************************
+
 import pygame.font
 
 # Opens and reads leaderboard text file
@@ -28,8 +33,9 @@ def update_score_list(settings, score):
             f = open("highest_score_file.txt", "w")
             f.write( new_user  + "\n" + str(current_score))
 
+#this function is an iteration of the show_game_over function
 def show_previous_highest_score(settings, screen):
-    #  Font settings for "Game Over"  text
+    #  Font settings
      text_color = (255, 255, 255)
      font = pygame.font.SysFont(None,38)
      showgameover = font.render( "Highest Score: " + str(existing_highest_score), True, text_color, settings.bg_color)

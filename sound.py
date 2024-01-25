@@ -1,3 +1,8 @@
+
+# **********************************
+# This file is written by ERIC
+# **********************************
+
 #Sound import
 import pygame
 pygame.init()

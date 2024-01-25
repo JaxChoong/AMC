@@ -1,3 +1,8 @@
+
+# **********************************
+# This file is written by JAX
+# **********************************
+
 import pygame
 from settings import Settings
 from pygame.sprite import Sprite
