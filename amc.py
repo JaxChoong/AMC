@@ -48,14 +48,9 @@ while True:
         gf.check_ebee_cars_collisions(ebee,carsGroup,settings)   #Check for collisions between ebee and car 
         gf.scale_game_difficulty(settings,score,screen,existing_lanes,carsGroup)    # Scales up game diff depending on score
 
-    #testing (Calvin)
-    else:
-        settings.game_over = True
-
-
-    gf.update_screen(settings, screen, score, play_button, ebee, carsGroup)
-    # lb.update_score_list(settings, score)
 
     #testing (Calvin)
-    if settings.game_over:
+    elif settings.game_over:
         hs.update_score_list(settings, score)
+    
+    gf.update_screen(settings, screen, score, play_button, ebee, carsGroup)
