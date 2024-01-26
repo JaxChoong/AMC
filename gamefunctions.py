@@ -10,10 +10,31 @@ from cars import Cars
 import highest_score as hs
 import sound as sfx
 
+oriroadbg=pygame.image.load("images/roadnice.png")
+resizedbg=pygame.transform.scale(oriroadbg, (350,600))
+dupbg=pygame.transform.scale(oriroadbg, (350,600))
+posY_bg=0
+posY_dupbg=-600
+scrollspeed=0.7
+
 #(JAX)
 def update_screen(settings, screen, score, play_button, ebee, carsGroup):
+    global posY_bg
+    global posY_dupbg
     # Update the screen every time th game loops
     screen.fill(settings.bg_color)
+    if(settings.running):#ERIC ADDED SCROLLING BACKGROUND AND IT IS MAKING EVERYTHING SLOW NEEDS TO FIX
+      posY_bg += scrollspeed
+      screen.blit(resizedbg,(0,posY_bg))
+      posY_dupbg += scrollspeed
+      screen.blit(dupbg,(0,posY_dupbg))
+    if(posY_bg>=600):
+      posY_bg = -600
+    if(posY_dupbg>=600):
+       posY_dupbg = -600
+    else:
+      screen.blit(resizedbg,(0,posY_bg))
+      screen.blit(dupbg,(0,posY_dupbg))
     ebee.blitme()
     carsGroup.draw(screen)
     score.prep_score(settings, screen)
@@ -27,7 +48,7 @@ def update_screen(settings, screen, score, play_button, ebee, carsGroup):
 
     #(ERIC)
     if settings.game_over:
-            #  Initialize gameover screen
+        #  Initialize gameover screen
         show_game_over(settings,screen)
         #(CALVIN)
         hs.update_score_list(settings, score)
@@ -149,4 +170,3 @@ def scale_game_difficulty(settings,score,screen,existing_lanes,carsGroup):   #Fu
             create_cars(screen, existing_lanes, carsGroup)
             settings.score_scale += 200
             settings.ebee_speed_factor = 0.5
-        

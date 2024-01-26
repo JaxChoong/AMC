@@ -19,7 +19,6 @@ from playbutton import Button
 import highest_score as hs
 import sound as sfx
 
-
 # ******************************************
 # This file is written by JAX
 # (CALVIN and ERIC type a few lines only)
@@ -46,7 +45,6 @@ while True:
         carsGroup.update(score,settings)
         gf.check_ebee_cars_collisions(ebee,carsGroup,settings)   #Check for collisions between ebee and car 
         gf.scale_game_difficulty(settings,score,screen,existing_lanes,carsGroup)    # Scales up game diff depending on score
-
 
     #testing (Calvin)
     elif settings.game_over:
