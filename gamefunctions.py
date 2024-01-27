@@ -54,7 +54,7 @@ def update_screen(settings, screen, score, play_button, ebee, carsGroup):
         hs.update_score_list(settings, score)
         hs.show_previous_highest_score(settings, screen)
     # Draws / shows newest screen.
-    pygame.display.flip()
+    pygame.display.update()
 
 #(ERIC)
 def check_events(ebee, play_button,settings, screen, score, carsGroup, mouse_x, mouse_y,existing_lanes):

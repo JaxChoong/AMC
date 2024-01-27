@@ -17,6 +17,10 @@ class Ebee(Sprite):
         #Load ebee and get its rect.
         self.image = pygame.image.load('images\ebee.png')     #import the ebee image
         self.image = pygame.transform.scale(self.image, (40, 90))      #resize ebee image
+        self.imageright = pygame.image.load('images\ebeeright.png')     #right ebee image
+        self.imageright = pygame.transform.scale(self.imageright, (40, 90))   #resize right ebee
+        self.imageleft = pygame.image.load('images\ebeeleft.png')     #left ebee image
+        self.imageleft = pygame.transform.scale(self.imageleft, (40, 90))    #resize left ebee
         self.rect = self.image.get_rect()
         self.screen_rect = screen.get_rect()
 
@@ -32,8 +36,17 @@ class Ebee(Sprite):
         self.moving_left=False
 
     def blitme(self):
-        # Draw ebee at its current location
-        self.screen.blit(self.image, self.rect)
+        #Commented out so that it runs faster
+
+        # if(self.moving_right==True):
+        #     self.screen.blit(self.imageright, self.rect)
+        # elif(self.moving_left==True):
+        #     self.screen.blit(self.imageleft, self.rect)
+        # else:
+            
+        # # Draw ebee at its current location
+            self.screen.blit(self.image, self.rect)
+
 
     def center_ebee(self):
         # Center ebee on the screen.
@@ -46,4 +59,5 @@ class Ebee(Sprite):
             self.center+=settings.ebee_speed_factor
         elif(self.moving_left==True and self.rect.left > 0):
             self.center-=settings.ebee_speed_factor
+
         
