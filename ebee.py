@@ -18,9 +18,9 @@ class Ebee(Sprite):
         self.image = pygame.image.load('images\ebee.png')     #import the ebee image
         self.image = pygame.transform.scale(self.image, (40, 90))      #resize ebee image
         self.imageright = pygame.image.load('images\ebeeright.png')     #right ebee image
-        self.imageright = pygame.transform.scale(self.imageright, (40, 90))   #resize right ebee
+        self.imageright = pygame.transform.scale(self.imageright, (50, 90))   #resize right ebee
         self.imageleft = pygame.image.load('images\ebeeleft.png')     #left ebee image
-        self.imageleft = pygame.transform.scale(self.imageleft, (40, 90))    #resize left ebee
+        self.imageleft = pygame.transform.scale(self.imageleft, (50, 90))    #resize left ebee
         self.rect = self.image.get_rect()
         self.screen_rect = screen.get_rect()
 
@@ -38,11 +38,11 @@ class Ebee(Sprite):
     def blitme(self):
         #Commented out so that it runs faster
 
-        # if(self.moving_right==True):
-        #     self.screen.blit(self.imageright, self.rect)
-        # elif(self.moving_left==True):
-        #     self.screen.blit(self.imageleft, self.rect)
-        # else:
+        if(self.moving_right==True):
+            self.screen.blit(self.imageright, self.rect)
+        elif(self.moving_left==True):
+            self.screen.blit(self.imageleft, self.rect)
+        else:
             
         # # Draw ebee at its current location
             self.screen.blit(self.image, self.rect)

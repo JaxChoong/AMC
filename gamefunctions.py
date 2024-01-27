@@ -115,7 +115,7 @@ def randomizeLanes():
     if lane_number == 1:
         lane = 50
     elif lane_number == 2:
-        lane = 170
+        lane = 180
     elif lane_number == 3:
         lane = 300
     return lane
