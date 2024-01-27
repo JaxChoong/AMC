@@ -19,7 +19,16 @@ existing_highscore_user = LB[0]
 existing_highest_score = int(LB[1])
 
 #takes an input through terminal for new user session
-new_user = input("Enter your name: ")
+new_user = input("**************************************************\n" +
+                 "       _           ____   ____       _______ \n" +
+                 "     / _ \        |  _ \_/ _  |     /  _____|\n" +
+                 "    / /_\ \       | | \   / | |    /  /      \n" +
+                 "   / _____ \      | |  \_/  | |    |  |      \n" +
+                 "  / /     \ \     | |       | |    \  \_____ \n" +
+                 " /_/       \_\    |_|       |_|     \_______|\n" +
+                 "                                             \n" +
+                 "**************************************************\n" +
+                 "Enter your name: ")
 
     #function to call settings and score attribute
 def update_score_list(settings, score):
@@ -37,7 +46,7 @@ def update_score_list(settings, score):
 def show_previous_highest_score(settings, screen):
     #  Font settings
     text_color = (255, 255, 255)
-    font = pygame.font.SysFont(None,38)
-    showgameover = font.render( "Highest Score: " + str(existing_highest_score), True, text_color, settings.bg_color)
-    dest=(57,66)
+    font = pygame.font.SysFont(None,27)
+    showgameover = font.render( "Prev Highest by " + existing_highscore_user + ": " + str(existing_highest_score), True, text_color, settings.bg_color)
+    dest=(63,66)
     screen.blit(showgameover,dest)

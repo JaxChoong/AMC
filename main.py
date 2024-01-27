@@ -49,5 +49,5 @@ while True:
     #testing (Calvin)
     elif settings.game_over:
         hs.update_score_list(settings, score)
-    
+
     gf.update_screen(settings, screen, score, play_button, ebee, carsGroup)
