@@ -88,7 +88,7 @@ def check_play_button(settings, screen, score, play_button, ebee, carsGroup, mou
     # Start a new game when the player clicks Play.
     if play_button.rect.collidepoint(mouse_x,mouse_y):
         button_clicked = play_button.rect.collidepoint(mouse_x, mouse_y)
-        create_cars(screen,existing_lanes,carsGroup)
+        create_cars(screen,settings,existing_lanes,carsGroup)
         if button_clicked and not settings.running:
             # Reset the game settings
             #(CALVIN)
@@ -102,7 +102,7 @@ def check_play_button(settings, screen, score, play_button, ebee, carsGroup, mou
                 carsGroup.empty()
                 settings.game_over = False
                 settings.initialize_dynamic_settings()
-                create_cars(screen,existing_lanes,carsGroup)
+                create_cars(screen,settings,existing_lanes,carsGroup)
             settings.running = True
 
             # Reset the scoreboard images.
@@ -140,7 +140,7 @@ def show_game_over(settings, screen):
      screen.blit(showgameover,dest)
 
 # These lines are written by JAX
-def create_cars(screen, existing_lanes, carsGroup):
+def create_cars(screen, settings,existing_lanes, carsGroup):
     #clears existing lanes
     existing_lanes.clear()
 
@@ -149,24 +149,18 @@ def create_cars(screen, existing_lanes, carsGroup):
     while new_lane in existing_lanes:
         new_lane = randomizeLanes()  # Keep generating a new lane until it's unique
 
-    car = Cars(screen, new_lane)
+    car = Cars(screen,settings,new_lane)
     carsGroup.add(car)
     existing_lanes.append(new_lane)
 
 
 def scale_game_difficulty(settings,score,screen,existing_lanes,carsGroup):   #Function to scale up difficulty
     current_score = score.score
-    if current_score == 300:
+    if current_score == 300 and len(carsGroup)<2:
         sfx.carpassingSfx.play()
-        if len(carsGroup)<2:
-            create_cars(screen, existing_lanes, carsGroup)
-            settings.score_scale += 50
-    elif current_score == 1000:
-        if len(carsGroup)<3:
-            create_cars(screen, existing_lanes, carsGroup)
-            settings.score_scale += 100
-    elif current_score == 5000:
-        if len(carsGroup)<4:
-            create_cars(screen, existing_lanes, carsGroup)
-            settings.score_scale += 200
-            settings.ebee_speed_factor = 0.5
+        create_cars(screen,settings, existing_lanes, carsGroup)
+        settings.score_scale += 50
+    elif current_score == 1000 and len(carsGroup)<3:
+        sfx.carpassingSfx.play()
+        settings.score_scale += 100
+        settings.ebee_speed_factor = 3

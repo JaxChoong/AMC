@@ -13,23 +13,23 @@ class Settings():
         self.screen_height = 600
         self.bg_color = (30,30,30)
         
-
         # Settings for cars
-        self.car_speed_factor = 0.3
         self.score_scale = 50
+        self.car_speed_minimum = 2.0
+        self.car_speed_maximum = 3.0
 
         # Settings for ebee
-        self.ebee_speed_factor = 0.3
+        self.ebee_speed_factor = 2
 
     #(CALVIN)
     def reset_game(self):
         self.running = False
         self.game_over = False
-        self.car_speed_factor = self.car_speed_factor
 
     #(JAX)
     def initialize_dynamic_settings(self):
        # Initialize settings that change throughout the game.
-       self.ebee_speed_factor = 0.3
-       self.cars_speed_factor = 0.3
-       self.score_scale = 50
+        self.ebee_speed_factor = 2
+        self.score_scale = 50
+        self.car_speed_minimum = 2.0
+        self.car_speed_maximum = 3.0
