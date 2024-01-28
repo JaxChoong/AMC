@@ -10,6 +10,7 @@ from pygame.sprite import Sprite
 settings=Settings()
 
 # Class that manages behaviours of the ebee.
+# eric wrote this yes
 class Ebee(Sprite):
     def __init__(self,screen):
         self.screen = screen

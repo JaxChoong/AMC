@@ -42,7 +42,7 @@ def update_screen(settings, screen, score, play_button, ebee, carsGroup):
 
     #(CALVIN)
     if not settings.running:
-        #play button
+        # Draw play button on the screen when game is not running
         play_button.draw_button()
         # lb.update_score_list(settings, score)
 
@@ -66,9 +66,9 @@ def check_events(ebee, play_button,settings, screen, score, carsGroup, mouse_x, 
 
                 if event.type == pygame.KEYDOWN:
                       if(event.key==pygame.K_LEFT):
-                           ebee.moving_left=True
+                           ebee.moving_left=True           # Ebee move left flag
                       elif(event.key==pygame.K_RIGHT):
-                           ebee.moving_right=True
+                           ebee.moving_right=True          # Ebee move right flag
 
                 if event.type == pygame.KEYUP:
                       if(event.key == pygame.K_LEFT or event.key==pygame.K_RIGHT):
@@ -76,7 +76,7 @@ def check_events(ebee, play_button,settings, screen, score, carsGroup, mouse_x, 
                            ebee.moving_right=False
                 
                 #(CALVIN)
-                elif event.type == pygame.MOUSEBUTTONDOWN:
+                elif event.type == pygame.MOUSEBUTTONDOWN:     # Check if user clicks the play button
                     mouse_x, mouse_y = pygame.mouse.get_pos()
                     check_play_button(settings, screen, score, play_button, ebee, carsGroup, mouse_x, mouse_y,existing_lanes)
                 
@@ -88,7 +88,7 @@ def check_play_button(settings, screen, score, play_button, ebee, carsGroup, mou
     # Start a new game when the player clicks Play.
     if play_button.rect.collidepoint(mouse_x,mouse_y):
         button_clicked = play_button.rect.collidepoint(mouse_x, mouse_y)
-        create_cars(screen,settings,existing_lanes,carsGroup)
+        create_cars(screen,settings,existing_lanes,carsGroup)   # Creates first car once the game is started
         if button_clicked and not settings.running:
             # Reset the game settings
             #(CALVIN)
@@ -99,10 +99,10 @@ def check_play_button(settings, screen, score, play_button, ebee, carsGroup, mou
                 score.reset_score()
 
                 #Resets cars
-                carsGroup.empty()
+                carsGroup.empty()       # Clears cars from screen
                 settings.game_over = False
                 settings.initialize_dynamic_settings()
-                create_cars(screen,settings,existing_lanes,carsGroup)
+                create_cars(screen,settings,existing_lanes,carsGroup)   # Creates a new car again
             settings.running = True
 
             # Reset the scoreboard images.
@@ -126,7 +126,6 @@ def check_ebee_cars_collisions(ebee,carsGroup,settings):
     if collisions:
         sfx.explosionSfx.play() #this line was ERIC
         settings.car_speed_factor=0
-        #show_game_over(ebee,settings, screen)
         settings.running = False
         settings.game_over = True
 
@@ -144,23 +143,31 @@ def create_cars(screen, settings,existing_lanes, carsGroup):
     #clears existing lanes
     existing_lanes.clear()
 
-    # Create a singular car with a unique lane
     new_lane = randomizeLanes()
-    while new_lane in existing_lanes:
-        new_lane = randomizeLanes()  # Keep generating a new lane until it's unique
+    while new_lane in existing_lanes:   # check if new lane is occupied by another car
+        new_lane = randomizeLanes()  # Keep generating a new lane 
 
-    car = Cars(screen,settings,new_lane)
-    carsGroup.add(car)
+    car = Cars(screen,settings)
+    carsGroup.add(car)           # Actually add cars in 
     existing_lanes.append(new_lane)
 
+def get_existing_lanes(carsGroup):       # check what lanes are occupied currently
+    existing_lanes = []
+    for car in carsGroup:
+        existing_lanes.append(car.rect.centerx)
+    return existing_lanes
 
 def scale_game_difficulty(settings,score,screen,existing_lanes,carsGroup):   #Function to scale up difficulty
     current_score = score.score
     if current_score == 300 and len(carsGroup)<2:
         sfx.carpassingSfx.play()
-        create_cars(screen,settings, existing_lanes, carsGroup)
-        settings.score_scale += 50
+        create_cars(screen,settings, existing_lanes, carsGroup)     # Add car to group
+        settings.score_scale += 50               # Scale up score for each car that is dodged
+        settings.car_speed_minimum = 2.5
+        settings.car_speed_maximum = 3.5
     elif current_score == 1000 and len(carsGroup)<3:
         sfx.carpassingSfx.play()
-        settings.score_scale += 100
-        settings.ebee_speed_factor = 3
+        settings.score_scale += 100              # Scale up score for each car that is dodged
+        settings.ebee_speed_factor = 3           # Increase movement speed for ebee cuz why not
+        settings.car_speed_minimum = 3.0
+        settings.car_speed_maximum = 4.0

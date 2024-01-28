@@ -9,7 +9,7 @@ import pygame
 # From Source
 class Score():
     def __init__(self, settings, screen):
-        """Initialize scorekeeping attributes."""
+        #Initialize scorekeeping attributes.
         self.score = 0
         self.screen = screen
         self.screen_rect = screen.get_rect()
@@ -33,7 +33,7 @@ class Score():
         self.added_to_leaderboard = False
 
     def prep_score(self, settings, screen):
-        """Turn the score into a rendered image."""
+        #Turn the score into a rendered image.
         rounded_score = int(round(self.score,-1))
         score_str = "{:,}".format(rounded_score)
         self.score_image = self.font.render(score_str, True, self.text_color, settings.bg_color)
@@ -44,6 +44,6 @@ class Score():
         self.score_rect.top = 20
 
     def show_score(self, screen):
-        """Draw scores and levels to screen."""
+        #Draw scores and levels to screen.
         self.screen.blit(self.score_image, self.score_rect)
 

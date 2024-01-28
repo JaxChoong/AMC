@@ -11,7 +11,7 @@ class Settings():
         self.game_over = False   # Detect if the game is over
         self.screen_width = 350
         self.screen_height = 600
-        self.bg_color = (30,30,30)
+        self.bg_color = (115,115,115)
         
         # Settings for cars
         self.score_scale = 50
