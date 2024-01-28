@@ -49,6 +49,7 @@ class Cars(Sprite):
     def reset_cars(self, score, settings, carsGroup):
         # Function to reset cars to the top of the screen if they hit bottom
         existing_lanes = gf.get_existing_lanes(carsGroup)   #check what lanes are occupied
+        self.image = self.randomize_cars()
         new_lane = gf.randomizeLanes()
         while new_lane in existing_lanes:
             new_lane = gf.randomizeLanes()
