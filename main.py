@@ -28,6 +28,7 @@ settings = Settings()
 pygame.init()
 screen = pygame.display.set_mode((settings.screen_width,settings.screen_height))    #Set the screen size
 pygame.display.set_caption("Average MMU Commute")
+# Initialise assets
 ebee = Ebee(screen)
 lane = gf.randomizeLanes()
 existing_lanes = []
@@ -39,11 +40,11 @@ carsGroup = Group()
 
 # Main game loop
 while True:
-    gf.check_events(ebee, play_button,settings, screen, score, carsGroup, mouse_x, mouse_y,existing_lanes)
-    if settings.running:    # Run the game
-        ebee.movementUpdate()            # Let ebee move
+    gf.check_events(ebee, play_button,settings, screen, score, carsGroup, mouse_x, mouse_y,existing_lanes)   # check for keydown/
+    if settings.running:    
+        ebee.movementUpdate()           
         carsGroup.update(score,settings,carsGroup)      # Move cars and reset
-        gf.check_ebee_cars_collisions(ebee,carsGroup,settings)   #Check for collisions between ebee and car 
+        gf.check_ebee_cars_collisions(ebee,carsGroup,settings)   
         gf.scale_game_difficulty(settings,score,screen,existing_lanes,carsGroup)    # Scales up game diff depending on score
 
     #testing (Calvin)

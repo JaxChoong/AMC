@@ -10,6 +10,7 @@ from cars import Cars
 import highest_score as hs
 import sound as sfx
 
+# initialise scrolling background
 oriroadbg=pygame.image.load("images/roadnice.png")
 resizedbg=pygame.transform.scale(oriroadbg, (350,600))
 dupbg=pygame.transform.scale(oriroadbg, (350,600))
@@ -21,9 +22,9 @@ scrollspeed=0.7
 def update_screen(settings, screen, score, play_button, ebee, carsGroup):
     global posY_bg
     global posY_dupbg
-    # Update the screen every time th game loops
+    # Update the screen every time the game loops
     screen.fill(settings.bg_color)
-    if(settings.running):#ERIC ADDED SCROLLING BACKGROUND AND IT IS MAKING EVERYTHING SLOW NEEDS TO FIX
+    if(settings.running):#ERIC ADDED SCROLLING BACKGROUND
       posY_bg += scrollspeed
       screen.blit(resizedbg,(0,posY_bg))
       posY_dupbg += scrollspeed
@@ -32,6 +33,7 @@ def update_screen(settings, screen, score, play_button, ebee, carsGroup):
       posY_bg = -600
     if(posY_dupbg>=600):
        posY_dupbg = -600
+    # redraws everything on screen
     else:
       screen.blit(resizedbg,(0,posY_bg))
       screen.blit(dupbg,(0,posY_dupbg))
@@ -44,7 +46,6 @@ def update_screen(settings, screen, score, play_button, ebee, carsGroup):
     if not settings.running:
         # Draw play button on the screen when game is not running
         play_button.draw_button()
-        # lb.update_score_list(settings, score)
 
     #(ERIC)
     if settings.game_over:
@@ -89,6 +90,7 @@ def check_play_button(settings, screen, score, play_button, ebee, carsGroup, mou
     if play_button.rect.collidepoint(mouse_x,mouse_y):
         button_clicked = play_button.rect.collidepoint(mouse_x, mouse_y)
         create_cars(screen,settings,existing_lanes,carsGroup)   # Creates first car once the game is started
+
         if button_clicked and not settings.running:
             # Reset the game settings
             #(CALVIN)
@@ -126,7 +128,7 @@ def check_ebee_cars_collisions(ebee,carsGroup,settings):
     if collisions:
         sfx.explosionSfx.play() #this line was ERIC
         settings.car_speed_factor=0
-        settings.running = False
+        settings.running = False      # stop game if collided
         settings.game_over = True
 
 #(ERIC)
@@ -140,8 +142,6 @@ def show_game_over(settings, screen):
 
 # These lines are written by JAX
 def create_cars(screen, settings,existing_lanes, carsGroup):
-    #clears existing lanes
-    existing_lanes.clear()
 
     new_lane = randomizeLanes()
     while new_lane in existing_lanes:   # check if new lane is occupied by another car
@@ -171,3 +171,5 @@ def scale_game_difficulty(settings,score,screen,existing_lanes,carsGroup):   #Fu
         settings.ebee_speed_factor = 3           # Increase movement speed for ebee cuz why not
         settings.car_speed_minimum = 3.0
         settings.car_speed_maximum = 4.0
+
+        # the min and max car speeds are the parameter for random() to run with

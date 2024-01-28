@@ -24,7 +24,7 @@ class Score():
 
         #Prepare the initial score images.
         self.prep_score(settings, screen)
-        # self.prep_high_score()
+
 
     #(CALVIN)
     def reset_score(self):

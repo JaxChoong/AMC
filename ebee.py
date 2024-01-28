@@ -10,7 +10,6 @@ from pygame.sprite import Sprite
 settings=Settings()
 
 # Class that manages behaviours of the ebee.
-# eric wrote this yes
 class Ebee(Sprite):
     def __init__(self,screen):
         self.screen = screen
@@ -37,7 +36,6 @@ class Ebee(Sprite):
         self.moving_left=False
 
     def blitme(self):
-        #Commented out so that it runs faster
 
         if(self.moving_right==True):
             self.screen.blit(self.imageright, self.rect)
@@ -45,7 +43,7 @@ class Ebee(Sprite):
             self.screen.blit(self.imageleft, self.rect)
         else:
             
-        # # Draw ebee at its current location
+        # Draw ebee at its current location
             self.screen.blit(self.image, self.rect)
 
 

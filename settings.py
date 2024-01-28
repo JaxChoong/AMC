@@ -11,7 +11,7 @@ class Settings():
         self.game_over = False   # Detect if the game is over
         self.screen_width = 350
         self.screen_height = 600
-        self.bg_color = (115,115,115)
+        self.bg_color = (115,115,115)   # used as bg for text, same color as road
         
         # Settings for cars
         self.score_scale = 50
@@ -29,6 +29,7 @@ class Settings():
     #(JAX)
     def initialize_dynamic_settings(self):
        # Initialize settings that change throughout the game.
+        # called to reset settings when game restarts
         self.ebee_speed_factor = 2
         self.score_scale = 50
         self.car_speed_minimum = 2.0
