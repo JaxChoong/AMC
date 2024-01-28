@@ -162,12 +162,12 @@ def scale_game_difficulty(settings,score,screen,existing_lanes,carsGroup):   #Fu
     if current_score == 300 and len(carsGroup)<2:
         sfx.carpassingSfx.play()
         create_cars(screen,settings, existing_lanes, carsGroup)     # Add car to group
-        settings.score_scale += 50               # Scale up score for each car that is dodged
+        settings.score_scale = 100               # Scale up score for each car that is dodged
         settings.car_speed_minimum = 2.5
         settings.car_speed_maximum = 3.5
     elif current_score == 1000 and len(carsGroup)<3:
         sfx.carpassingSfx.play()
-        settings.score_scale += 100              # Scale up score for each car that is dodged
+        settings.score_scale = 200              # Scale up score for each car that is dodged
         settings.ebee_speed_factor = 3           # Increase movement speed for ebee cuz why not
         settings.car_speed_minimum = 3.0
         settings.car_speed_maximum = 4.0
