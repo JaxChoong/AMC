@@ -90,15 +90,18 @@ def check_play_button(settings, screen, score, play_button, ebee, carsGroup, mou
     if play_button.rect.collidepoint(mouse_x,mouse_y):
         button_clicked = play_button.rect.collidepoint(mouse_x, mouse_y)
         create_cars(screen,settings,existing_lanes,carsGroup)   # Creates first car once the game is started
-
+        print("It crashed before checking")
         if button_clicked and not settings.running:
             # Reset the game settings
             #(CALVIN)
+            print("It crashed after first checking")
             if settings.game_over == True:
+                print("It crashed after 2nd checking")
                 settings.reset_game()
-
+                print("It crashed after reset game")
                 #resets score
                 score.reset_score()
+                print("It crashed after reset score")
 
                 #Resets cars
                 carsGroup.empty()       # Clears cars from screen
@@ -142,7 +145,8 @@ def show_game_over(settings, screen):
 
 # These lines are written by JAX
 def create_cars(screen, settings,existing_lanes, carsGroup):
-
+    #clears existing lanes
+    existing_lanes.clear()
     new_lane = randomizeLanes()
     while new_lane in existing_lanes:   # check if new lane is occupied by another car
         new_lane = randomizeLanes()  # Keep generating a new lane 

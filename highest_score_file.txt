@@ -1,2 +1,2 @@
-urmom
-0
+& C:/Users/User/AppData/Local/Microsoft/WindowsApps/python3.11.exe "c:/Users/User/VS Code Stuff/AMC/main.py"
+2000
