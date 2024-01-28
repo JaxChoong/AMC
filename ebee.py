@@ -56,7 +56,7 @@ class Ebee(Sprite):
     def movementUpdate(self):      # Eric wrote this part
         #Ebee movement(left and right)
         self.rect.centerx=self.center
-        if(self.moving_right==True and self.rect.right < 350):
+        if(self.moving_right==True and self.rect.right < 340):
             self.center+=settings.ebee_speed_factor
         elif(self.moving_left==True and self.rect.left > 0):
             self.center-=settings.ebee_speed_factor
